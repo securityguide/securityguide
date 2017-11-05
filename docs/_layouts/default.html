@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html id="{{ page.cid }}" lang="en" class="{{ page.class }}">
+  {% include head.html %}
+  <body>
+    {% include header.html %}
+    {% include side_navigation.html %}
+    {{ content }}
+    {% include footer.html %}
+    {% include footer_scripts.html %}
+  </body>
+</html>
