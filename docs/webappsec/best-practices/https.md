@@ -1,3 +1,7 @@
+---
+title: Enforce HTTPS
+---
+
 ## Enforce HTTPS Universally
 You get this one! I know it. I *know* it. It's 2017, and we don't need convincing, right?
 

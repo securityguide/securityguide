@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html id="{{ page.cid }}" lang="en" class="{{ page.class }}">
+<html lang="en">
   {% include head.html %}
   <body>
     {% include header.html %}
-    {% include side_navigation.html %}
-    {{ content }}
-    {% include footer.html %}
-    {% include footer_scripts.html %}
+    <div class="container-fluid">
+      <div class="row">
+        {% include side_navigation.html %}
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
+          <h1>{{page.title}}</h1>
+          {{ content | toc }}
+        </main>
+      </div>
+    </div>
   </body>
 </html>

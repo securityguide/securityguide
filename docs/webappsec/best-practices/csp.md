@@ -1,4 +1,6 @@
-# Content Security Policy
+---
+title: Content Security Policy
+---
 
 # Description
 

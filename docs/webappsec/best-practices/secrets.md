@@ -1,3 +1,7 @@
+---
+title: Secrets
+---
+
 ## No Secrets in the Code
 We see this more than you'd think. The dangers of leaving secrets into your code are wide ranging and severe. It could lead to everything from an attacker compromising a user's session to full owning your application, and even the application server, gaining access to your database, and impersonating you to uncover more valuable data (and this is not an exhaustive list).
 

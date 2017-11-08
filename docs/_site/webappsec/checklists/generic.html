@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generic Pre-flight Checklist</title>
+
+  <link rel="shortcut icon" type="image/ico" href="/assets/favicon.ico">
+
+  <!-- no custom css detected -->
+
+  
+  <meta name="description" content="Generic Pre-flight Checklist" />
+  
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/webappsec/checklists/generic.html">
+  <link rel="alternate" type="application/rss+xml" title="ThoughtWorks Security Guide" href="/feed.xml">
+</head>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">ThoughtWorks Security Guide</a>
+    <div class="collapse navbar-collapse">
+      <div class="mr-auto"></div>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-3 d-none d-sm-block bg-light sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/">Home</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/webappsec/">Web Application Security</a>
+</li><li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/fundamentals/">Fundamentals</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/checklists/">Checklists</a>
+</li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link active" href="/webappsec/checklists/generic.html">Generic</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/checklists/rails-4.html">Rails 4</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/checklists/expressjs.html">ExpressJS</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/best-practices/">Best Practices</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/tools/">Tools</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/netsec/">Network Security</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/opsec/">Operations Security</a>
+</li>
+  </ul>
+</nav>
+
+
+
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
+          <h1>Generic Pre-flight Checklist</h1>
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#configuration">Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#cookies-and-sessions">Cookies and sessions</a></li>
+<li class="toc-entry toc-h2"><a href="#assets">Assets</a></li>
+<li class="toc-entry toc-h2"><a href="#http-headers">HTTP Headers</a></li>
+<li class="toc-entry toc-h2"><a href="#input">Input</a></li>
+<li class="toc-entry toc-h2"><a href="#views">Views</a></li>
+<li class="toc-entry toc-h2"><a href="#routing-and-urls">Routing and URLs</a></li>
+<li class="toc-entry toc-h2"><a href="#authorization">Authorization</a></li>
+<li class="toc-entry toc-h2"><a href="#pipeline">Pipeline</a></li>
+</ul><h2 id="configuration">
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<ul>
+  <li>TLS is required in production</li>
+  <li>Secrets are stored in the environment</li>
+  <li>Anti-CSRF is enabled</li>
+</ul>
+
+<h2 id="cookies-and-sessions">
+<a id="cookies-and-sessions" class="anchor" href="#cookies-and-sessions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cookies and sessions</h2>
+
+<ul>
+  <li>Authentication always triggers a session reset</li>
+  <li>data in cookies is untrusted, unless signed</li>
+  <li>sessions have a max lifetime</li>
+  <li>sessions expire after inactivity</li>
+</ul>
+
+<h2 id="assets">
+<a id="assets" class="anchor" href="#assets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assets</h2>
+
+<ul>
+  <li>All stylesheets have absolute paths</li>
+</ul>
+
+<h2 id="http-headers">
+<a id="http-headers" class="anchor" href="#http-headers" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTTP Headers</h2>
+
+<ul>
+  <li>Enable secure headers</li>
+  <li>Sensitive content is not cached</li>
+</ul>
+
+<h2 id="input">
+<a id="input" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input</h2>
+
+<ul>
+  <li>All queries use parameter binding</li>
+  <li>User input is not used to build file paths</li>
+</ul>
+
+<h2 id="views">
+<a id="views" class="anchor" href="#views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Views</h2>
+
+<ul>
+  <li>All output is filtered</li>
+</ul>
+
+<h2 id="routing-and-urls">
+<a id="routing-and-urls" class="anchor" href="#routing-and-urls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Routing and URLs</h2>
+
+<ul>
+  <li>There is no sensitive information in any application URLs</li>
+</ul>
+
+<h2 id="authorization">
+<a id="authorization" class="anchor" href="#authorization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authorization</h2>
+
+<ul>
+  <li>The default is to require authorization</li>
+  <li>follows principles of least privilege</li>
+</ul>
+
+<h2 id="pipeline">
+<a id="pipeline" class="anchor" href="#pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pipeline</h2>
+
+<ul>
+  <li>Dependency checks are run in pipeline</li>
+  <li>Static analysis is run in pipeline</li>
+</ul>
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

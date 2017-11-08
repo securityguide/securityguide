@@ -1,5 +1,10 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+# Only the main Sass file needs front matter.
+# The partials live in `docs/_sass/`.
+# Bootstrap comes from the gem.
 ---
 
-@import "base";
+@import 'variables';
+@import 'bootstrap';
+@import 'base';
+@import 'rouge';

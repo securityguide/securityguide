@@ -1,4 +1,8 @@
-# Generic Preflight Checklist
+---
+title: Generic Pre-flight Checklist
+nav_title: Generic
+toc: true
+---
 
 ## Configuration
 
@@ -9,6 +13,9 @@
 ## Cookies and sessions
 
 * Authentication always triggers a session reset
+* data in cookies is untrusted, unless signed
+* sessions have a max lifetime
+* sessions expire after inactivity
 
 ## Assets
 
@@ -35,6 +42,7 @@
 ## Authorization
 
 * The default is to require authorization
+* follows principles of least privilege
 
 ## Pipeline
 

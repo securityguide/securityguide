@@ -1,4 +1,7 @@
-## Use a Dependency Checker
+---
+title: Dependency Checker
+---
+
 Using components with known vulnerabilities is a [widespread and serious problem][owasp-a9] in application development. It can lead to easy, scannable vulnerabilities in your app. Recommended tools for a variety of languages are provided elsewhere in this project:
 
 * [Ruby]

@@ -1,4 +1,8 @@
-# Rails 4 Preflight Checklist
+---
+title: Rails 4 Pre-flight Checklist
+nav_title: Rails 4
+toc: true
+---
 
 ## Configuration
 

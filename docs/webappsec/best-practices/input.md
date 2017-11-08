@@ -1,3 +1,7 @@
+---
+title: Validate User Input
+---
+
 ## Validate User Inputs
 If you have fields that accept user input in your application, making it a priority have some validations on this input is imperative to a basic level of security on your application.
 

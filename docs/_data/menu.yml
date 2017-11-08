@@ -5,10 +5,9 @@
     - abusing-cookies
     - abusing-filesystems
     - abusing-input
-    - abusing-referrer
-    - abusing-same-origin
-  - check-lists:
-    - general
+    - other-tricks
+  - checklists:
+    - generic
     - rails-4
     - expressjs
   - best-practices:
@@ -26,5 +25,15 @@
     - javascript
     - python
     - ruby
-- devopssec
+- netsec:
+  - best-practices:
+    - systems-inventory
+    - system-administrators
+    - orphaned-systems
+    - security-advisories
+    - patch-management
+    - vulnerability-scanning
+    - remote-logging
+  - tools
+  - threat-modeling
 - opsec

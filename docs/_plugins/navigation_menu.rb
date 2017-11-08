@@ -5,6 +5,7 @@ module Jekyll
   class NavigationMenuTag < Liquid::Tag
 
     def initialize(tag_name, text, tokens)
+      @li_class, @a_class, @active_class = text.split(' ')
       super
     end
 
@@ -21,7 +22,7 @@ module Jekyll
       @site.data["pages_by_path"] ||= Hash[
         @site.pages.map {|page| [page.path, page]}
       ]
-      "<ul>" + render_menu_items(@menu_data) + "<ul>"
+      render_menu_items(@menu_data)
     end
 
     def render_menu_items(items, options={})
@@ -59,21 +60,21 @@ module Jekyll
           )
         end
       end
-      title    = page["title"] || page.name
-      selected = page.url == @page["url"] ? "selected" : ""
+      title    = page["nav_title"] || page["title"] || page.name
+      selected = page.url == @page["url"]
       render_item(level: level, selected: selected, url: page.url, title: title) + subtree
     end
 
     def render_item(level:, selected:, url:, title:)
-%(<li class="nav-level-#{level} #{selected}">
-  <a class="nav-level-#{level}" #{selected} href="#{url}">#{title}</a>
+%(<li class="nav-level-#{level} #{@li_class}">
+  <a class="nav-level-#{level} #{@a_class} #{@active_class if selected}" href="#{url}">#{title}</a>
 </li>)
     end
 
     def render_error(page_name, level)
       puts "ERROR: no page with name '#{page_name}'"
-%(<li class="nav-level-#{level}">
-  <a class="nav-level-#{level}" href="#">No Page #{page_name}</a>
+%(<li class="nav-level-#{level} #{@li_class}">
+  <a class="nav-level-#{level} #{@a_class}" href="#">No Page #{page_name}</a>
 </li>)
     end
 

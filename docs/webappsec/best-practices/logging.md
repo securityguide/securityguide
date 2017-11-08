@@ -1,3 +1,7 @@
+---
+title: Logging
+---
+
 ## Enable Logging
 Logs can help you detect and respond to potential malicious behavior in your application.
 

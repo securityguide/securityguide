@@ -1,3 +1,7 @@
+---
+title: Access Controls
+---
+
 ## Proper Access Controls
 This one is tricky as it is very dependent on the context of your application. Here are some things to consider:
 

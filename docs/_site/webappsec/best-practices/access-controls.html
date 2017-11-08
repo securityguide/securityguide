@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Access Controls</title>
+
+  <link rel="shortcut icon" type="image/ico" href="/assets/favicon.ico">
+
+  <!-- no custom css detected -->
+
+  
+  <meta name="description" content="Access Controls" />
+  
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/webappsec/best-practices/access-controls.html">
+  <link rel="alternate" type="application/rss+xml" title="ThoughtWorks Security Guide" href="/feed.xml">
+</head>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">ThoughtWorks Security Guide</a>
+    <div class="collapse navbar-collapse">
+      <div class="mr-auto"></div>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-3 d-none d-sm-block bg-light sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/">Home</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/webappsec/">Web Application Security</a>
+</li><li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/fundamentals/">Fundamentals</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/checklists/">Checklists</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/best-practices/">Best Practices</a>
+</li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link active" href="/webappsec/best-practices/access-controls.html">Access Controls</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/csp.html">Content Security Policy</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/dependency-checker.html">Dependency Checker</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/environment-isolation.html">Environment Isolation</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/https.html">Enforce HTTPS</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/input.html">Validate User Input</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/logging.html">Logging</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/secrets.html">Secrets</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/tools/">Tools</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/netsec/">Network Security</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/opsec/">Operations Security</a>
+</li>
+  </ul>
+</nav>
+
+
+
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
+          <h1>Access Controls</h1>
+          <h2 id="proper-access-controls">Proper Access Controls</h2>
+<p>This one is tricky as it is very dependent on the context of your application. Here are some things to consider:</p>
+
+<ul>
+  <li>How do users authenticate? Are you using a <a href="https://nvd.nist.gov/vuln/detail/CVE-2016-5697">secure library</a>?</li>
+  <li>Should only privileged users have access to certain resources? Where are these roles stored? Could they be <a href="https://www.owasp.org/index.php/Mass_Assignment_Cheat_Sheet">manipulated by user input</a>?</li>
+  <li>What systems/services can access your database?</li>
+</ul>
+
+<p>This last point is absolutely critical. App context varies, but <strong>an anonymous user/system/service should never be able to access your database</strong>. Make sure there is a strong authentication model for your database.</p>
+
+<p>More Resources:</p>
+
+<ul>
+  <li><a href="https://www.owasp.org/index.php/Authentication_Cheat_Sheet">OWASP Authentication Cheat Sheet</a></li>
+  <li><a href="https://docs.mongodb.com/manual/security/">MongoDB</a></li>
+  <li><a href="https://aws.amazon.com/blogs/security/how-to-control-access-to-your-amazon-elasticsearch-service-domain/">AWS Elastic Search</a></li>
+  <li><a href="https://dev.mysql.com/doc/refman/5.7/en/privilege-system.html">MySQL</a></li>
+  <li><a href="https://www.postgresql.org/docs/9.4/static/auth-methods.html">PostgreSQL</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/authentication-in-sql-server">Microsoft SQL Server</a></li>
+</ul>
+
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

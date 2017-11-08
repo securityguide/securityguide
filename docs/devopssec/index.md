@@ -1,5 +1,0 @@
----
-title: DevOps Security
----
-
-devops

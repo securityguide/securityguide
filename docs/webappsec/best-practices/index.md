@@ -1,5 +1,6 @@
 ---
 title: Web Application Best Practices
+nav_title: Best Practices
 ---
 
 # Security Baseline
