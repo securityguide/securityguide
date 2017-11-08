@@ -65,8 +65,9 @@ module Jekyll
     end
 
     def render_item(level:, selected:, url:, title:)
+      href = [@site.baseurl, url].join('/').gsub(/\/+/,'/')
 %(<li class="nav-level-#{level} #{@li_class}">
-  <a class="nav-level-#{level} #{@a_class} #{@active_class if selected}" href="#{url}">#{title}</a>
+  <a class="nav-level-#{level} #{@a_class} #{@active_class if selected}" href="#{href}">#{title}</a>
 </li>)
     end
 

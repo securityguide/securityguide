@@ -5,7 +5,7 @@ title: ThoughtWorks Security Guide
 email: infosec@thoughtworks.com
 description: >-
   Tips and guides for writing and deploying secure software, from your friends at ThoughtWorks.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/security" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: thoughtworks
 github_username:  thoughtworks
