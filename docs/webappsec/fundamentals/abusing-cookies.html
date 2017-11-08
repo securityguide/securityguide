@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abusing Cookies</title>
+
+  <link rel="shortcut icon" type="image/ico" href="/assets/favicon.ico">
+
+  <!-- no custom css detected -->
+
+  
+  <meta name="description" content="Abusing Cookies" />
+  
+
+  <link rel="stylesheet" href="http://localhost:4000/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/webappsec/fundamentals/abusing-cookies.html">
+  <link rel="alternate" type="application/rss+xml" title="ThoughtWorks Security Guide" href="/feed.xml">
+</head>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">ThoughtWorks Security Guide</a>
+    <div class="collapse navbar-collapse">
+      <div class="mr-auto"></div>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-3 d-none d-sm-block bg-light sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/">Home</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/webappsec/">Web Application Security</a>
+</li><li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/fundamentals/">Fundamentals</a>
+</li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link active" href="/webappsec/fundamentals/abusing-cookies.html">Abusing Cookies</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/fundamentals/abusing-filesystems.html">Abusing Filesystems</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/fundamentals/abusing-input.html">Abusing Input</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/fundamentals/other-tricks.html">Other Tricks</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/checklists/">Checklists</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/best-practices/">Best Practices</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/tools/">Tools</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/netsec/">Network Security</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/opsec/">Operations Security</a>
+</li>
+  </ul>
+</nav>
+
+
+
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
+          <h1>Abusing Cookies</h1>
+          <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#how-cookies-work">How cookies work</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#a-look-at-cookies">A look at cookies</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-client---server-request">1. client -> server request</a></li>
+<li class="toc-entry toc-h3"><a href="#2-client---server-response">2. client <- server response</a></li>
+<li class="toc-entry toc-h3"><a href="#3-client---server-request">3. client -> server request</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#domains-and-paths">Domains and Paths</a></li>
+<li class="toc-entry toc-h2"><a href="#cookie-flags">Cookie Flags</a></li>
+<li class="toc-entry toc-h2"><a href="#cookie-facts">Cookie facts</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#abusing-cookies">Abusing Cookies</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#session-fixation">Session fixation</a></li>
+<li class="toc-entry toc-h2"><a href="#session-hijacking">Session hijacking</a></li>
+<li class="toc-entry toc-h2"><a href="#cross-site-request-forgery">Cross site request forgery</a></li>
+<li class="toc-entry toc-h2"><a href="#parsing-cookies">Parsing cookies</a></li>
+</ul>
+</li>
+</ul><h1 id="how-cookies-work">
+<a id="how-cookies-work" class="anchor" href="#how-cookies-work" aria-hidden="true"><span class="octicon octicon-link"></span></a>How cookies work</h1>
+
+<p>If you have ever done any web programming, you are familiar with cookies. However, you might not be familiar with some of the unexpected ways in which cookies can create security vulnerabilities.</p>
+
+<h2 id="a-look-at-cookies">
+<a id="a-look-at-cookies" class="anchor" href="#a-look-at-cookies" aria-hidden="true"><span class="octicon octicon-link"></span></a>A look at cookies</h2>
+
+<p>Let us start at the beginning: what is a cookie? The HTTP cookie allows a server to store a bit of arbitrary data on the client’s device. A cookie is just a KEY=VALUE pair, with some associated attributes the direct the browser when the cookie should be used.</p>
+
+<p>Cookies are just headers set by the server in the HTTP response or by the client in the HTTP request. For example:</p>
+
+<h3 id="1-client---server-request">
+<a id="1-client---server-request" class="anchor" href="#1-client---server-request" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. client -&gt; server request</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl --head -v https://en.wikipedia.org/wiki/Main_Page 2&gt;&amp;1 | grep '^&gt;'
+
+  SIDE NOTE: the `grep '^&gt;'` command will show us just the client's request headers
+
+&gt; HEAD /wiki/Main_Page HTTP/1.1
+&gt; Host: en.wikipedia.org
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+</code></pre></div></div>
+
+<h3 id="2-client---server-response">
+<a id="2-client---server-response" class="anchor" href="#2-client---server-response" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. client &lt;- server response</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl --head -v --cookie-jar /tmp/cookie https://en.wikipedia.org/wiki/Main_Page 2&gt;&amp;1 | grep '^&lt;'
+
+  SIDE NOTE:
+    * the `--cookie-jar` argument will save the cookies to the file specified
+    * the `grep '^&lt;'` command will show us just the server's response headers
+
+Server responds with two Set-Cookie headers:
+
+&lt; Set-Cookie: WMF-Last-Access=04-Nov-2016;Path=/;HttpOnly;secure;Expires=Tue, 06 Dec 2016 12:00:00 GMT
+&lt; Set-Cookie: GeoIP=US:::37.75:-97.82:v4; Path=/; secure; Domain=.wikipedia.org
+</code></pre></div></div>
+
+<h3 id="3-client---server-request">
+<a id="3-client---server-request" class="anchor" href="#3-client---server-request" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. client -&gt; server request</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl --head -v --cookie /tmp/cookie https://en.wikipedia.org/wiki/Main_Page 2&gt;&amp;1 | grep '^&gt;'
+
+When the client next mades a request, it will send these cookies in the request header:
+
+&gt; HEAD /wiki/Main_Page HTTP/1.1
+&gt; Host: en.wikipedia.org
+&gt; User-Agent: curl/7.47.0
+&gt; Accept: */*
+&gt; Cookie: WMF-Last-Access=31-Oct-2016; GeoIP=US:::37.75:-97.82:v4
+</code></pre></div></div>
+
+<h2 id="domains-and-paths">
+<a id="domains-and-paths" class="anchor" href="#domains-and-paths" aria-hidden="true"><span class="octicon octicon-link"></span></a>Domains and Paths</h2>
+
+<ul>
+  <li>
+    <p>If the domain is not explicitly set by the server, the browser will assign the domain based on the origin of the cookie.</p>
+  </li>
+  <li>
+    <p>Sub-domains can set cookies for the parent domain: A page can set a cookie for its own domain or any parent domain, as long as the parent domain is not a public suffix. In other words, sub.domain.org can set a cookie for domain.org, which will also be used for sub2.domain.org. Firefox and Chrome use the Public Suffix List to determine if a domain is a public suffix.</p>
+  </li>
+  <li>
+    <p>A cookie for a parent domain is always sent to the sub-domain: a cookie with domain=domain.org or domain=.domain.org will be sent to sub.domain.org. Because of this, a compromise on domain.org can result in session fixation vulnerability for all the subdomains.</p>
+  </li>
+  <li>
+    <p>Cookie scheme for determining origin is very different than the same-origin policy. The short hand version: cookie domain is a loose match, same-origin is a very strict match, including protocol and port.</p>
+  </li>
+</ul>
+
+<h2 id="cookie-flags">
+<a id="cookie-flags" class="anchor" href="#cookie-flags" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cookie Flags</h2>
+
+<p>A cookie flag is a suggestion to the client regarding when a cookie should be used.</p>
+
+<p>Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set-Cookie: KEY=VALUE; Secure; HttpOnly; SameSite=Strict
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Secure</code></p>
+
+<p>The secure flag suggests to the client that they cookie should only be used for requests over https.</p>
+
+<p>Why this is highly recommended:</p>
+
+<ul>
+  <li>Suppose your browser has an active session to https://securebank.int, then you type in ‘securebank.int’ in another tab. Without the <code class="highlighter-rouge">Secure</code> flag, your browser has just leaked your session id in the clear over the network! This is true even if you don’t serve any content on plaintext http and always redirect to https.</li>
+</ul>
+
+<p><code class="highlighter-rouge">HttpOnly</code></p>
+
+<p>This flags prevents javascript from reading the value of the cookie.</p>
+
+<p>Why this is highly recommended:</p>
+
+<ul>
+  <li>This flag makes it harder for XSS attacks to hijack your session by reading the cookie and exfiltrating the session id to the attacker’s domain.</li>
+</ul>
+
+<p><code class="highlighter-rouge">SameSite=Strict</code></p>
+
+<p>This flag prevents the cookie from being used by other web pages when they submit forms or get resources from the cookie’s domain.</p>
+
+<p>Why this is highly recommended:</p>
+
+<ul>
+  <li>SameSite restrictions are a good way to mitigate CSRF attacks.</li>
+</ul>
+
+<h2 id="cookie-facts">
+<a id="cookie-facts" class="anchor" href="#cookie-facts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cookie facts</h2>
+
+<ul>
+  <li>Cookie size: Cookies can hold no more than 4096 bytes.</li>
+  <li>Duplicate Cookies: It is possible to have multiple cookies with the same name for the same domain. The server must not rely on any particular order of the cookies.</li>
+</ul>
+
+<h1 id="abusing-cookies">
+<a id="abusing-cookies" class="anchor" href="#abusing-cookies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Abusing Cookies</h1>
+
+<h2 id="session-fixation">
+<a id="session-fixation" class="anchor" href="#session-fixation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Session fixation</h2>
+
+<p>By resetting the session before setting critical information in the session, you protect against session fixation attacks.</p>
+
+<p>Why this is important: There are many ways that an attacker can “pre-seed” a session cookie in the target’s browser. Once this is done, browsers follow a simple rule with cookies: if they have a cookie that matches the site, they send the cookie. Because of this, the website has no way to distinguish between legitimate session cookies that are created by the target and nefarious session cookies created by the attacker (and injected into the target’s browser).</p>
+
+<p>Remember:</p>
+
+<ul>
+  <li>Encrypted and signed session cookies offer no defense against session fixation.</li>
+  <li>If you are using a third party authentication framework, you most likely still need to worry about resetting the session yourself. This includes SAML authentication libraries.</li>
+</ul>
+
+<h2 id="session-hijacking">
+<a id="session-hijacking" class="anchor" href="#session-hijacking" aria-hidden="true"><span class="octicon octicon-link"></span></a>Session hijacking</h2>
+
+<p>To be written.</p>
+
+<p>There are various ways that a session ID can leak. Then an attacker can assume your session.</p>
+
+<h2 id="cross-site-request-forgery">
+<a id="cross-site-request-forgery" class="anchor" href="#cross-site-request-forgery" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross site request forgery</h2>
+
+<p>To be written.</p>
+
+<p>Browsers are stupid: they always send the cookie, regardless of where the POST came from.</p>
+
+<h2 id="parsing-cookies">
+<a id="parsing-cookies" class="anchor" href="#parsing-cookies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parsing cookies</h2>
+
+<p>To be written.</p>
+
+<p>Cookies are untrusted input. If there is a bug in the parsing code, such as a JSON or XML library, then an attacker can exploit it via cookies</p>
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

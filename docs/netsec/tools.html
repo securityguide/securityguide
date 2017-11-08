@@ -3,18 +3,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ThoughtWorks Security Guide</title>
+  <title>Network Security Tools</title>
 
   <link rel="shortcut icon" type="image/ico" href="/assets/favicon.ico">
 
   <!-- no custom css detected -->
 
   
-  <meta name="description" content="" />
+  <meta name="description" content="Network Security Tools" />
   
 
   <link rel="stylesheet" href="http://localhost:4000/assets/main.css">
-  <link rel="canonical" href="http://localhost:4000/404.html">
+  <link rel="canonical" href="http://localhost:4000/netsec/tools.html">
   <link rel="alternate" type="application/rss+xml" title="ThoughtWorks Security Guide" href="/feed.xml">
 </head>
   <body>
@@ -43,6 +43,14 @@
 </li>
 <li class="nav-level-0 nav-item">
   <a class="nav-level-0 nav-link " href="/netsec/">Network Security</a>
+</li><li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/netsec/best-practices/">Best Practices</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link active" href="/netsec/tools.html">Network Security Tools</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/netsec/threat-modeling.html">Threat Modeling</a>
 </li>
 <li class="nav-level-0 nav-item">
   <a class="nav-level-0 nav-link " href="/opsec/">Operations Security</a>
@@ -53,27 +61,24 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1></h1>
-          <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+          <h1>Network Security Tools</h1>
+          <h2 id="cyberchef">CyberChef</h2>
 
-<div class="container">
-  <h1>404</h1>
+<p>Swiss Army Knife for encoded information: does conversions, decryption, hashing, everything. Very handy!</p>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<p>https://gchq.github.io/CyberChef</p>
+
+<h2 id="snoopy-logger">Snoopy Logger</h2>
+
+<p>https://github.com/a2o/snoopy
+logs all shell commands to syslog
+not useful for forensics, because it can be bypassed, but useful to audit what has happened manually and if an attacker doesn’t know its there.</p>
+
+<h2 id="vulnreport">VULNREPORT</h2>
+
+<p>http://vulnreport.io/</p>
+
+<p>automation and management platform for penetration tests and security audits</p>
 
         </main>
       </div>

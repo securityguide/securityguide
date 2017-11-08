@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content Security Policy</title>
+
+  <link rel="shortcut icon" type="image/ico" href="/assets/favicon.ico">
+
+  <!-- no custom css detected -->
+
+  
+  <meta name="description" content="Content Security Policy" />
+  
+
+  <link rel="stylesheet" href="http://localhost:4000/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/webappsec/best-practices/csp.html">
+  <link rel="alternate" type="application/rss+xml" title="ThoughtWorks Security Guide" href="/feed.xml">
+</head>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">ThoughtWorks Security Guide</a>
+    <div class="collapse navbar-collapse">
+      <div class="mr-auto"></div>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-3 d-none d-sm-block bg-light sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/">Home</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/webappsec/">Web Application Security</a>
+</li><li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/fundamentals/">Fundamentals</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/checklists/">Checklists</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/best-practices/">Best Practices</a>
+</li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/access-controls.html">Access Controls</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link active" href="/webappsec/best-practices/csp.html">Content Security Policy</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/dependency-checker.html">Dependency Checker</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/environment-isolation.html">Environment Isolation</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/https.html">Enforce HTTPS</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/input.html">Validate User Input</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/logging.html">Logging</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/webappsec/best-practices/secrets.html">Secrets</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/webappsec/tools/">Tools</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/netsec/">Network Security</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/opsec/">Operations Security</a>
+</li>
+  </ul>
+</nav>
+
+
+
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
+          <h1>Content Security Policy</h1>
+          <h1 id="description">Description</h1>
+
+<p>Content Security Policy limits the resources that a web browser will
+load, making it more difficult for attackers to carry out a
+<a href="https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29">Cross Site Scripting</a>
+attack.</p>
+
+<p>When enabling CSP, we can define a whitelist of resources that the
+browser will load. Any resources (even including inline scripts) that
+are not explicitly enabled in the whitelist will be blocked by the browser.</p>
+
+<p>As an <a href="https://blogs.technet.microsoft.com/srd/2013/09/27/software-defense-series-exploit-mitigation-and-vulnerability-detection/">exploit mitigation</a>,
+it’s important to remember that while CSP makes exploitation more
+difficult, it does not prevent the bugs that make an exploit possible
+in the first place (lack of appropriate
+encoding/sanitization). Therefore, its protection will never be
+complete, and people will continue to find bypasses for even the most
+rigerous policies. That said, it’s an important part of a Defense in
+Depth strategy for any web application.</p>
+
+<h1 id="acceptance-criteria">Acceptance Criteria</h1>
+
+<ul>
+  <li>A policy is created that blocks any resources not required by the application</li>
+  <li>The policy is enabled via the <code class="highlighter-rouge">Content-Security-Policy</code> header</li>
+  <li>An api or service is created to parse CSP reports</li>
+  <li>Reporting is enabled via the <code class="highlighter-rouge">report-uri</code> directive</li>
+  <li>The team understands what limitations CSP adds, and how to check for violations</li>
+  <li>The team has a process for updating the policy as requirements change</li>
+</ul>
+
+<h1 id="resources">Resources</h1>
+
+<ul>
+  <li>https://scotthelme.co.uk/content-security-policy-an-introduction/</li>
+  <li>https://developers.google.com/web/fundamentals/security/csp/</li>
+</ul>
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

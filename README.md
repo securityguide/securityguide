@@ -1,5 +1,11 @@
 # ThoughtWorks Security Guide
 
+## Directory layout
+
+* security
+  * docs: Rendered static pages. For now, these are committed to git so long as we use github pages.
+  * pages: The source content for the site.
+
 ## Building the static pages
 
 Install prerequisites:
@@ -34,6 +40,7 @@ Alternate stylesheets for the Rouge code syntax highlighter: https://github.com/
 
 ## TODO
 
-plugins to consider:
-
-* https://github.com/ivantsepp/jekyll-autolink_email
+* auto link to page by name
+* javascript search
+* improve CSS
+* autolink urls https://github.com/ivantsepp/jekyll-autolink_email

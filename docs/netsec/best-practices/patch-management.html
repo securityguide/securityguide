@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patch Management</title>
+
+  <link rel="shortcut icon" type="image/ico" href="/assets/favicon.ico">
+
+  <!-- no custom css detected -->
+
+  
+  <meta name="description" content="Patch Management" />
+  
+
+  <link rel="stylesheet" href="http://localhost:4000/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/netsec/best-practices/patch-management.html">
+  <link rel="alternate" type="application/rss+xml" title="ThoughtWorks Security Guide" href="/feed.xml">
+</head>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">ThoughtWorks Security Guide</a>
+    <div class="collapse navbar-collapse">
+      <div class="mr-auto"></div>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-3 d-none d-sm-block bg-light sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/">Home</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/webappsec/">Web Application Security</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/netsec/">Network Security</a>
+</li><li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/netsec/best-practices/">Best Practices</a>
+</li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/netsec/best-practices/systems-inventory.html">Systems Inventory</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/netsec/best-practices/system-administrators.html">System Administrators</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/netsec/best-practices/orphaned-systems.html">Orphaned Systems</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/netsec/best-practices/security-advisories.html">Security Advisories</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link active" href="/netsec/best-practices/patch-management.html">Patch Management</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/netsec/best-practices/vulnerability-scanning.html">Vulnerability Scanning</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/netsec/best-practices/remote-logging.html">Remote Logging</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/netsec/tools.html">Network Security Tools</a>
+</li>
+<li class="nav-level-1 nav-item">
+  <a class="nav-level-1 nav-link " href="/netsec/threat-modeling.html">Threat Modeling</a>
+</li>
+<li class="nav-level-0 nav-item">
+  <a class="nav-level-0 nav-link " href="/opsec/">Operations Security</a>
+</li>
+  </ul>
+</nav>
+
+
+
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
+          <h1>Patch Management</h1>
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#system-patching-standards">System Patching Standards</a></li>
+<li class="toc-entry toc-h2"><a href="#automatic-updates">Automatic Updates</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#windows">Windows</a></li>
+<li class="toc-entry toc-h3"><a href="#mac">Mac</a></li>
+<li class="toc-entry toc-h3"><a href="#linux">Linux</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#redhatcentosamazon-linux">RedHat/Centos/Amazon Linux</a></li>
+<li class="toc-entry toc-h4"><a href="#debianubuntu">Debian/Ubuntu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#manual-updates">Manual Updates</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#redhatcentos">Redhat/Centos</a></li>
+<li class="toc-entry toc-h3"><a href="#debianubuntu-1">Debian/Ubuntu</a></li>
+<li class="toc-entry toc-h3"><a href="#ansible">Ansible</a></li>
+</ul>
+</li>
+</ul><p>A deliberate patch management plan is required for all service owners and sysadmins.</p>
+
+<p>Although every development team, service owner or system administrator will determine their own particular plan, what is vitally important is that there is a plan in place.</p>
+
+<h2 id="system-patching-standards">
+<a id="system-patching-standards" class="anchor" href="#system-patching-standards" aria-hidden="true"><span class="octicon octicon-link"></span></a>System Patching Standards</h2>
+
+<ul>
+  <li>Critical/High security updates should be applied as soon as possible but no later than 48 hours after they have been published.</li>
+  <li>Medium/Low security updates can wait until a standard maintenance window or weekly/monthly scheduled patching.</li>
+</ul>
+
+<p>If possible, package updates should be installed and tested in a test/dev/staging/uat environment before being deployed in production.</p>
+
+<h2 id="automatic-updates">
+<a id="automatic-updates" class="anchor" href="#automatic-updates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Automatic Updates</h2>
+
+<h3 id="windows">
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Windows</h3>
+
+<p>Turn on automatic updates.</p>
+
+<h3 id="mac">
+<a id="mac" class="anchor" href="#mac" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mac</h3>
+
+<p>Turn on automatic updates.</p>
+
+<h3 id="linux">
+<a id="linux" class="anchor" href="#linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linux</h3>
+
+<h4 id="redhatcentosamazon-linux">
+<a id="redhatcentosamazon-linux" class="anchor" href="#redhatcentosamazon-linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>RedHat/Centos/Amazon Linux</h4>
+
+<p>Method 1</p>
+
+<p>https://www.centos.org/docs/5/html/yum/sn-updating-your-system.html</p>
+
+<p>The yum package supplied with CentOS includes scripts to perform full system updates every day. To activate automatic daily updates, enter this command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo '/sbin/chkconfig --level 345 yum on &amp;&amp; /sbin/service yum start'
+</code></pre></div></div>
+
+<p>Method 2: use “yum-cron” tool</p>
+
+<p>Enabling automatic updates in Centos 6 and Red Hat 6 (yum-cron version 3.2.29 for CentOS 6):</p>
+
+<p>https://linuxaria.com/pills/enabling-automatic-updates-in-centos-6-and-red-hat-6</p>
+
+<p>Automatic updates for CentOS: yum-cron installing and configuring (yum-cron version 3.4.3, for Amazon Linux and CentOS 7): https://jonathansblog.co.uk/yum-cron</p>
+
+<h4 id="debianubuntu">
+<a id="debianubuntu" class="anchor" href="#debianubuntu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debian/Ubuntu</h4>
+
+<p>Install the packages <code class="highlighter-rouge">unattended-upgrades</code> and <code class="highlighter-rouge">apt-listchanges</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get install unattended-upgrades apt-listchanges
+</code></pre></div></div>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">unattended-upgrades</code> will automatically install updates.</li>
+  <li>
+<code class="highlighter-rouge">apt-listchanges</code> will send you email alerts when there are new versions available (defaults to <code class="highlighter-rouge">root</code>).</li>
+</ul>
+
+<p>To test to make sure it will work:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unattended-upgrade -d
+</code></pre></div></div>
+
+<p>For more information, see https://wiki.debian.org/UnattendedUpgrades</p>
+
+<h2 id="manual-updates">
+<a id="manual-updates" class="anchor" href="#manual-updates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual Updates</h2>
+
+<h3 id="redhatcentos">
+<a id="redhatcentos" class="anchor" href="#redhatcentos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Redhat/Centos</h3>
+
+<p>Make sure you have the yum security plugin installed:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># yum -y install yum-plugin-security
+</code></pre></div></div>
+
+<p>Update yum’s metadata:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># yum updateinfo
+</code></pre></div></div>
+
+<p>Check to see what security updates need to be installed:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># yum updateinfo list sec
+</code></pre></div></div>
+
+<p>Install the security updates:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># yum -y update-minimal —security
+</code></pre></div></div>
+
+<p>If you want to install <em>all</em> the available updates, do this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># yum -y update
+</code></pre></div></div>
+
+<h3 id="debianubuntu-1">
+<a id="debianubuntu-1" class="anchor" href="#debianubuntu-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debian/Ubuntu</h3>
+
+<p>Manual update:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># apt-get update &amp;&amp; sudo apt-get -y upgrade
+</code></pre></div></div>
+
+<h3 id="ansible">
+<a id="ansible" class="anchor" href="#ansible" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ansible</h3>
+
+<p>Syntax to run the playbook manually:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ansible-playbook -i inventory update-machines.yml -u &lt;username&gt; -kK
+</code></pre></div></div>
+
+<p>The inventory file is just a list of machines:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>elkkeyrecdb01.thoughtworks.com
+elkkeyrecdb02.thoughtworks.com
+elkkeyrecprod01.thoughtworks.com
+elkkeyrecprod02.thoughtworks.com
+elkkeyrecstaging01.thoughtworks.com
+elkkeyrecstaging02.thoughtworks.com
+</code></pre></div></div>
+
+<p>update-machines.yml is the ansible playbook. Here is some sample syntax:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+- hosts: all
+  sudo: yes
+
+  tasks:
+    - name: Install security plugin
+      yum: pkg=yum-plugin-security state=present
+
+    - name: Update yum metadata
+      command: yum updateinfo
+
+    - name: See what updates are going to be installed
+      command: yum check-update --security
+      register: packageList
+
+    - debug: msg="The following packages will be updated "
+
+    - name: Install security updates
+      command: yum -y update --security
+</code></pre></div></div>
+
+<p>Here’s another playbook example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+- hosts: all
+  sudo: yes
+
+  tasks:
+      - name: update all packages
+        action: yum name=* state=latest
+</code></pre></div></div>
+
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
