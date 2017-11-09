@@ -118,9 +118,13 @@ There are various ways that a session ID can leak. Then an attacker can assume y
 
 ## Cross site request forgery
 
-To be written.
+When a web browser submits a HTTP request, it dutifully includes all matching cookies, regardless of what web page the request came from. Without protection from Cross Site Request Forgery (CSRF), a web page on a completely different site can get your browser to make requests to a protected site while authenticated as you.
 
-Browsers are stupid: they always send the cookie, regardless of where the POST came from.
+Remember:
+
+* Idempotent HTTP GET: You must remember to make all GET actions idempotent (does not change the data). This is because most schemes for anti-CSRF only applies to HTTP POST.
+* Images are not protected: Images and other assets are not protected by most anti-CSRF or the same-origin policy. If you have images with sensitive information, then you need an additional system to prevent a third party site from stealing these images.
+* If the application has a XSS vulnerability, then CSRF is also defeated.
 
 ## Parsing cookies
 

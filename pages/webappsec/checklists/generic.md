@@ -6,9 +6,18 @@ toc: true
 
 ## Configuration
 
-* TLS is required in production
-* Secrets are stored in the environment
-* Anti-CSRF is enabled
+### TLS is required in production
+### Secrets are stored in the environment
+
+### Anti-CSRF is enabled
+
+When a web browser submits a HTTP request, it dutifully includes all matching cookies, regardless of what web page the request came from. Without CSRF protection, a nefarious page can get your browser to make requests to a protected site while authenticated as you.
+
+Remember:
+
+* Idempotent HTTP GET: You must remember to make all GET actions idempotent (does not change the data). This is because the Rails anti-CSRF only applies to HTTP POST.
+* Images are not protected: Images and other assets are not protected by the Rails anti-CSRF or the same-origin policy. If you have images with sensitive information, then you need an additional system to prevent a third party site from stealing these images.
+* If the application has a XSS vulnerability, then CSRF is also defeated.
 
 ## Cookies and sessions
 

@@ -245,9 +245,15 @@ When the client next mades a request, it will send these cookies in the request 
 <h2 id="cross-site-request-forgery">
 <a id="cross-site-request-forgery" class="anchor" href="#cross-site-request-forgery" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross site request forgery</h2>
 
-<p>To be written.</p>
+<p>When a web browser submits a HTTP request, it dutifully includes all matching cookies, regardless of what web page the request came from. Without protection from Cross Site Request Forgery (CSRF), a web page on a completely different site can get your browser to make requests to a protected site while authenticated as you.</p>
 
-<p>Browsers are stupid: they always send the cookie, regardless of where the POST came from.</p>
+<p>Remember:</p>
+
+<ul>
+  <li>Idempotent HTTP GET: You must remember to make all GET actions idempotent (does not change the data). This is because most schemes for anti-CSRF only applies to HTTP POST.</li>
+  <li>Images are not protected: Images and other assets are not protected by most anti-CSRF or the same-origin policy. If you have images with sensitive information, then you need an additional system to prevent a third party site from stealing these images.</li>
+  <li>If the application has a XSS vulnerability, then CSRF is also defeated.</li>
+</ul>
 
 <h2 id="parsing-cookies">
 <a id="parsing-cookies" class="anchor" href="#parsing-cookies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parsing cookies</h2>

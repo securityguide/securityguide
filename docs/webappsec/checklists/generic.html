@@ -73,7 +73,13 @@
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
           <h1>Generic Pre-flight Checklist</h1>
           <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#configuration">Configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#configuration">Configuration</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#tls-is-required-in-production">TLS is required in production</a></li>
+<li class="toc-entry toc-h3"><a href="#secrets-are-stored-in-the-environment">Secrets are stored in the environment</a></li>
+<li class="toc-entry toc-h3"><a href="#anti-csrf-is-enabled">Anti-CSRF is enabled</a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#cookies-and-sessions">Cookies and sessions</a></li>
 <li class="toc-entry toc-h2"><a href="#assets">Assets</a></li>
 <li class="toc-entry toc-h2"><a href="#http-headers">HTTP Headers</a></li>
@@ -85,10 +91,22 @@
 </ul><h2 id="configuration">
 <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
+<h3 id="tls-is-required-in-production">
+<a id="tls-is-required-in-production" class="anchor" href="#tls-is-required-in-production" aria-hidden="true"><span class="octicon octicon-link"></span></a>TLS is required in production</h3>
+<h3 id="secrets-are-stored-in-the-environment">
+<a id="secrets-are-stored-in-the-environment" class="anchor" href="#secrets-are-stored-in-the-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Secrets are stored in the environment</h3>
+
+<h3 id="anti-csrf-is-enabled">
+<a id="anti-csrf-is-enabled" class="anchor" href="#anti-csrf-is-enabled" aria-hidden="true"><span class="octicon octicon-link"></span></a>Anti-CSRF is enabled</h3>
+
+<p>When a web browser submits a HTTP request, it dutifully includes all matching cookies, regardless of what web page the request came from. Without CSRF protection, a nefarious page can get your browser to make requests to a protected site while authenticated as you.</p>
+
+<p>Remember:</p>
+
 <ul>
-  <li>TLS is required in production</li>
-  <li>Secrets are stored in the environment</li>
-  <li>Anti-CSRF is enabled</li>
+  <li>Idempotent HTTP GET: You must remember to make all GET actions idempotent (does not change the data). This is because the Rails anti-CSRF only applies to HTTP POST.</li>
+  <li>Images are not protected: Images and other assets are not protected by the Rails anti-CSRF or the same-origin policy. If you have images with sensitive information, then you need an additional system to prevent a third party site from stealing these images.</li>
+  <li>If the application has a XSS vulnerability, then CSRF is also defeated.</li>
 </ul>
 
 <h2 id="cookies-and-sessions">
