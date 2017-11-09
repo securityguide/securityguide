@@ -57,9 +57,133 @@
 
 <p><strong><a href="webappsec">WebAppSec</a></strong> Writing and maintaining secure web applications.</p>
 
-<p><strong><a href="netsec">NetSec</a></strong> Secure infrastructure development and deployment best practices.</p>
+<p><strong><a href="netsec">NetSec</a></strong> Best practices for secure infrastructure development and deployment best.</p>
 
 <p><strong><a href="opsec">OpSec</a></strong> How to prevent attacks against your devices and your data.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<h4 id="simple-method-editing-on-github">Simple method: editing on Github</h4>
+
+<p>Learning to use git can be very difficult. As an alternative, it is possible
+to contribute to <code class="highlighter-rouge">security.git</code> by directly editing pages through the Github
+website. This method does not let you preview how the page will render, but it
+does allow you to contribute edits without needing to install any software.</p>
+
+<p>First, you need to register a github.com account. Then visit
+<a href="https://github.com/thoughtworks/security">github.com/thoughtworks/security</a>.</p>
+
+<p>To edit files:</p>
+
+<ul>
+  <li><strong>Existing Files:</strong> You can edit an existing file by clicking on the file
+name and then clicking the “Edit” button in the file’s toolbar (it looks like
+pencil). To save, type a commit message and hit the “Propose file change” button.</li>
+  <li><strong>New Files:</strong> You can add a new page by clicking the “+” button at the
+end of the path breadcrumbs (e.g. “security / pages / netsec / [+]”
+near the top of the page). When you are done editing the content, hit the
+“Propose new file” button.</li>
+</ul>
+
+<p>Boom, you are done. Someone will review the change request
+and either merge it right away or add comments.</p>
+
+<h4 id="advanced-method-using-git-and-jekyll">Advanced method: using git and Jekyll</h4>
+
+<p><strong>Clone the repository</strong></p>
+
+<ol>
+  <li>
+    <p>Fork the <a href="https://github.com/thoughtworks/security">project repository</a>
+by clicking on the ‘Fork’ button near the top right of the page. This creates
+a copy of the code under your GitHub user account. For more details on
+how to fork a repository see <a href="https://help.github.com/articles/fork-a-repo/">this guide</a>.</p>
+  </li>
+  <li>
+    <p>Clone your fork of the <code class="highlighter-rouge">security</code> repo from your GitHub account to your local disk:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone git@github.com:YOUR_GITHUB_LOGIN/security.git
+<span class="nv">$ </span><span class="nb">cd </span>security
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a <code class="highlighter-rouge">feature</code> branch to hold your development changes:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout <span class="nt">-b</span> my-feature
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Modify the pages in your feature branch. Add changed files using <code class="highlighter-rouge">git add</code> and then <code class="highlighter-rouge">git commit</code> files:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add modified_files
+<span class="nv">$ </span>git commit
+</code></pre></div>    </div>
+
+    <p>Then push the changes to your GitHub account with:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git push <span class="nt">-u</span> origin my-feature
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Issue a pull request</p>
+  </li>
+</ol>
+
+<p>Go to https://github.com/YOUR_GITHUB_LOGIN/security and push the button to <a href="https://help.github.com/articles/using-pull-requests">issue a pull request</a>. Someone will review your changes and merge them or comment on them.</p>
+
+<p><strong>Installing Jekyll</strong></p>
+
+<p>In order to preview your edits before you commit them, you will need a program called <code class="highlighter-rouge">jekyll</code>.</p>
+
+<p>To install for Mac:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install ruby
+$ gem install jekyll
+</code></pre></div></div>
+
+<p>To install on Debian or Ubuntu (Wheezy or later):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># apt install ruby ruby-dev build-essential
+# gem install jekyll
+</code></pre></div></div>
+
+<p><strong>Previewing pages</strong></p>
+
+<p>When you are making changes, you can prevew the changes by running the jekyll server:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd security
+make serve
+</code></pre></div></div>
+
+<p>Then browse to <a href="http://localhost:4000">http://localhost:4000</a>. Any page you view this way gets re-rendered when it is loaded.</p>
+
+<p>After you have made changes, run this command to completely render the static HTML for the entire site:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd security
+make build
+</code></pre></div></div>
+
+<p><strong>Putting it all together</strong></p>
+
+<ol>
+  <li>Go to https://github.com/thoughtworks/security and click the fork button.</li>
+  <li>Clone your fork locally: <code class="highlighter-rouge">git clone ssh://git@github.com/YOUR_GITHUB_LOGIN/security</code></li>
+  <li>Start the amber server: <code class="highlighter-rouge">cd security; make serve</code></li>
+  <li>Edit files in <code class="highlighter-rouge">security/pages</code></li>
+  <li>Preview changes in your browser using http://localhost:4000</li>
+  <li>When satisfied, <code class="highlighter-rouge">git commit</code>, <code class="highlighter-rouge">git push</code></li>
+  <li>Go to https://github.com/YOUR_GITHUB_LOGIN/security and push the button to <a href="https://help.github.com/articles/using-pull-requests">issue a pull request</a>.</li>
+</ol>
+
+<p><strong>Keeping up to date</strong></p>
+
+<p>After a while, your fork of the repo will become out of date. In order to refresh it with the lastest upstream content:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/thoughtworks/security
+git checkout master
+git fetch upstream
+git rebase upstream/master
+</code></pre></div></div>
 
 
         </main>
