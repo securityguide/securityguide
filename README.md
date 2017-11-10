@@ -10,20 +10,19 @@
 
 Install prerequisites:
 
-    brew install ruby
     gem install bundler
     cd security/docs
     bundle
 
 Build the static pages:
 
-    cd security/docs
-    jekyll build
+    cd security
+    make build
 
 To view the pages via a local server:
 
-    cd security/docs
-    jekyll serve
+    cd security
+    make serve
 
 ## Editing tips
 
@@ -41,6 +40,6 @@ Alternate stylesheets for the Rouge code syntax highlighter: https://github.com/
 ## TODO
 
 * auto link to page by name
-* javascript search
+* javascript search https://github.com/christian-fei/Simple-Jekyll-Search
 * improve CSS
 * autolink urls https://github.com/ivantsepp/jekyll-autolink_email
