@@ -79,29 +79,34 @@ Go to https://github.com/YOUR_GITHUB_LOGIN/security and push the button to [issu
 
 In order to preview your edits before you commit them, you will need a program called `jekyll`.
 
-To install for Mac:
+Install `bundler` for Mac:
 
     $ brew install ruby
-    $ gem install jekyll
+    $ gem install bundler
 
-To install on Debian or Ubuntu (Wheezy or later):
+Install `bundler` on Debian/Ubuntu:
 
     # apt install ruby ruby-dev build-essential
-    # gem install jekyll
+    # gem install bundler
+
+Install `jekyll`:
+
+    $ cd security
+    $ bundle
 
 **Previewing pages**
 
 When you are making changes, you can prevew the changes by running the jekyll server:
 
-    cd security
-    make serve
+    $ cd security
+    $ make serve
 
 Then browse to [http://localhost:4000](http://localhost:4000). Any page you view this way gets re-rendered when it is loaded.
 
 After you have made changes, run this command to completely render the static HTML for the entire site:
 
-    cd security
-    make build
+    $ cd security
+    $ make build
 
 **Putting it all together**
 
@@ -117,8 +122,8 @@ After you have made changes, run this command to completely render the static HT
 
 After a while, your fork of the repo will become out of date. In order to refresh it with the lastest upstream content:
 
-    git remote add upstream https://github.com/thoughtworks/security
-    git checkout master
-    git fetch upstream
-    git rebase upstream/master
+    $ git remote add upstream https://github.com/thoughtworks/security
+    $ git checkout master
+    $ git fetch upstream
+    $ git rebase upstream/master
 
