@@ -7,4 +7,17 @@
 @import 'variables';
 @import 'bootstrap';
 @import 'base';
-@import 'rouge';
+
+//
+// Rouge Syntax Highlight
+//
+
+// black
+//@import 'rouge/native';
+//@import 'rouge/monokai';
+//@import 'rouge/fruity';
+
+// light
+@import 'rouge/emacs';
+//@import 'rouge/perldoc';
+
