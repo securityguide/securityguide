@@ -13,6 +13,36 @@ nav_title: Home
 
 ## Contributing
 
+#### Editing tips
+
+**Syntax**
+
+These pages use Markdown syntax ([Kramdown flavored](https://kramdown.gettalong.org/quickref.html)).
+
+**Wiki links**
+
+In addition to traditional Markdown syntax for links, you can use wiki-style links, like so:
+
+    \[[page_name]]
+    \[[page_name|Title]]
+    \[[Title => page_name]]
+
+Using wiki-style links is highly preferred, because these links will not break when a page moves and missing links will produce an error notice.
+
+**Includes**
+
+You can mix in [Liquid tags](https://jekyllrb.com/docs/templates/) in your Markdown pages. For example, this text:
+
+> &#123;% include blah.md %&#125;
+
+Will insert the contents of `pages/_includes/blah.md` into the current page.
+
+To include a formatted code block:
+
+> &#96;&#96;&#96;bash<br>
+> &#123;% include script.sh %&#125;<br>
+> &#96;&#96;&#96;
+
 #### Simple method: editing on Github
 
 Learning to use git can be very difficult. As an alternative, it is possible

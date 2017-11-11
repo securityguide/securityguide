@@ -48,35 +48,41 @@
 
 module Jekyll
   module WikiLinks
-    LINK_RE = /\[\[(.*?)\]\]/
+    LINK_RE = /\\?\[\[(([\p{Word} \|]|[=-]&gt;)+?)\]\]/
 
     def wiki_link(text)
       setup
       text.gsub(LINK_RE) do |match|
-        match.gsub!(/\[\[|\]\]/,'')
-        if match =~ /[=-]&gt;/
-          title, page_name = match.split(/[=-]&gt;/)
-        elsif match =~ /|/
-          page_name, title = match.split('|')
+        if match =~ /\A\\/
+          # the string starts with a backslash, so skip all processing,
+          # but remove the backslash
+          match[1..-1]
         else
-          page_name = match
-          title = nil
-        end
-        title = title.strip if title
-        page_name = page_name.strip
-        if page_name =~ /\Ahttps?:\/\//
-          title ||= page_name
-          %(<a href="#{page_name}">#{title}</a>)
-        else
-          page_name = page_name.downcase
-          page = find_page(page_name)
-          if page.nil?
-            puts "ERROR: No such page '#{page_name}'"
-            %(<a href="#{page_name}">#{page_name}</a>)
+          match.gsub!(/\[\[|\]\]/,'')
+          if match =~ /[=-]&gt;/
+            title, page_name = match.split(/[=-]&gt;/)
+          elsif match =~ /|/
+            page_name, title = match.split('|')
           else
-            title ||= page["title"] || page.basename.gsub(/[_-]/, ' ')
-            href = [@site.baseurl, page.url].join('/').gsub(/\/\/+/,'/')
-            %(<a href="#{href}">#{title}</a>)
+            page_name = match
+            title = nil
+          end
+          title = title.strip if title
+          page_name = page_name.strip
+          if page_name =~ /\Ahttps?:\/\//
+            title ||= page_name
+            %(<a href="#{page_name}">#{title}</a>)
+          else
+            page_name = page_name.downcase
+            page = find_page(page_name)
+            if page.nil?
+              puts "ERROR: No such page '#{page_name}'"
+              %(<a href="#{page_name}">#{page_name}</a>)
+            else
+              title ||= page["title"] || page.basename.gsub(/[_-]/, ' ')
+              href = [@site.baseurl, page.url].join('/').gsub(/\/\/+/,'/')
+              %(<a href="#{href}">#{title}</a>)
+            end
           end
         end
       end
