@@ -2,7 +2,18 @@
 title: Access Controls
 ---
 
+Are there tests for failed authentication states?
+
+https://martinfowler.com/articles/web-security-basics.html
+
+* Use existing authentication frameworks whenever possible instead of creating one yourself
+* Support authentication methods that make sense for your needs
+* Limit the ability of an attacker to take control of an account
+* You can take steps to prevent attacks to identify or compromise accounts
+* Never use default or hard-coded credentials
+
 ## Proper Access Controls
+
 This one is tricky as it is very dependent on the context of your application. Here are some things to consider:
 
 * How do users authenticate? Are you using a [secure library][saml-vuln]?
@@ -22,4 +33,3 @@ More Resources:
 
 [saml-vuln]: https://nvd.nist.gov/vuln/detail/CVE-2016-5697
 [mass-assignment]: https://www.owasp.org/index.php/Mass_Assignment_Cheat_Sheet
-
