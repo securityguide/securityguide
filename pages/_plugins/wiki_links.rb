@@ -48,7 +48,7 @@
 
 module Jekyll
   module WikiLinks
-    LINK_RE = /\\?\[\[(([\p{Word} \|]|[=-]&gt;)+?)\]\]/
+    LINK_RE = /\\?\[\[(([\p{Word} \.\,\?\!\"\'\|_\-\(\)]|[=-]&gt;)+?)\]\]/
 
     def wiki_link(text)
       setup

@@ -25,28 +25,18 @@
 
 module Jekyll
 
-  class NavigationMenuTag < Liquid::Tag
-
-    def initialize(tag_name, text, tokens)
-      @li_class, @a_class, @active_class = text.split(' ')
-      super
-    end
+  class MenuTag < Liquid::Tag
 
     def render(context)
-      render_menu(context)
-    end
-
-    private
-
-    def render_menu(context)
       @page = context.registers[:page]
       @site = context.registers[:site]
       @menu_data = @site.data["menu"]
       @site.data["pages_by_path"] ||= Hash[
         @site.pages.map {|page| [page.path, page]}
       ]
-      render_menu_items(@menu_data)
     end
+
+    protected
 
     def render_menu_items(items, options={})
       options[:level] ||= 0
@@ -75,7 +65,7 @@ module Jekyll
         path    = prefix + index
         page    = find_page(path)
         return render_error(index, level) unless page
-        if @page['path'] =~ /\A#{Regexp.escape(path)}\//
+        if options[:expand] || @page['path'] =~ /\A#{Regexp.escape(path)}\//
           subtree = render_menu_items(
             menu_item.values.first,
             prefix: prefix + index,
@@ -85,13 +75,17 @@ module Jekyll
       end
       title    = page["nav_title"] || page["title"] || page.name
       selected = page.url == @page["url"]
-      render_item(level: level, selected: selected, url: page.url, title: title) + subtree
+      description = page["description"] if options[:description]
+      render_item(
+        level: level, selected: selected,
+        url: page.url, title: title, description: description
+      ) + subtree
     end
 
-    def render_item(level:, selected:, url:, title:)
+    def render_item(level:, selected:, url:, title:, description:)
       href = [@site.baseurl, url].join('/').gsub(/\/+/,'/')
 %(<li class="nav-level-#{level} #{@li_class}">
-  <a class="nav-level-#{level} #{@a_class} #{@active_class if selected}" href="#{href}">#{title}</a>
+  <a class="nav-level-#{level} #{@a_class} #{@active_class if selected}" href="#{href}">#{title}</a>#{": " + description if description}
 </li>)
     end
 
@@ -112,9 +106,45 @@ module Jekyll
         }
       end
     end
-
   end
+
+  class NavigationMenuTag < MenuTag
+    def initialize(tag_name, text, tokens)
+      @li_class, @a_class, @active_class = text.split(' ')
+      super
+    end
+
+    def render(context)
+      super
+      render_menu_items(@menu_data)
+    end
+  end
+
+  class ContentMenuTag < MenuTag
+    def initialize(tag_name, text, tokens)
+      super
+    end
+
+    def render(context)
+      super
+      path = @page["dir"][1..-2] # remove leading and trailing /
+      current_root = @menu_data
+      path.split('/').each do |path_segment|
+        next if path_segment == ""
+        current_root = current_root.find {|item| item.is_a?(Hash) && item.keys.first == path_segment}[path_segment]
+        return "" if current_root.nil?
+      end
+      "<ul class='content-menu'>" +
+        render_menu_items(
+          current_root,
+          prefix: path, description: true, expand: true
+        ) +
+      "</ul>"
+    end
+  end
+
 end
 
 Liquid::Template.register_tag('navigation_menu', Jekyll::NavigationMenuTag)
+Liquid::Template.register_tag('content_menu', Jekyll::ContentMenuTag)
 

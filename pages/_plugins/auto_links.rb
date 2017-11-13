@@ -75,4 +75,4 @@ module Jekyll
   end
 end
 
-Liquid::Template.register_filter(Jekyll::AutoLinks)
+# Liquid::Template.register_filter(Jekyll::AutoLinks)
