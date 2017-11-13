@@ -3,14 +3,14 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Content Security Policy</title>
+  <title>Static analysis</title>
 
   <link rel="shortcut icon" type="image/ico" href="/security/assets/favicon.ico">
 
   <!-- no custom css detected -->
 
   
-  <meta name="description" content="Content Security Policy" />
+  <meta name="description" content="Static analysis" />
   
 
   <link rel="stylesheet" href="/security/assets/main.css">
@@ -54,7 +54,7 @@
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/dependency-check.html">Dependency Checker</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/static-analysis.html">Static analysis</a>
+  <a class="nav-level-2 nav-link active" href="/security/webappsec/best-practices/static-analysis.html">Static analysis</a>
 </li>
 <li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/secrets-management.html">Secrets Management</a>
@@ -63,7 +63,7 @@
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/access-controls.html">Access Controls</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link active" href="/security/webappsec/best-practices/csp.html">Content Security Policy</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/csp.html">Content Security Policy</a>
 </li>
 <li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/environment-isolation.html">Environment Isolation</a>
@@ -89,44 +89,51 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1 class="title">Content Security Policy</h1>
-          <h1 id="description">Description</h1>
+          <h1 class="title">Static analysis</h1>
+          <h3 id="what-is-it">What is it?</h3>
 
-<p>Content Security Policy limits the resources that a web browser will
-load, making it more difficult for attackers to carry out a
-<a href="https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29">Cross Site Scripting</a>
-attack.</p>
+<p>A static analysis tool, referred to as a Static Application Security Tool (SAST) in the context of security, identifies potential security flaws in source code, byte code, and binaries. SAST tools provide a powerful way to identify potential defects by analyzing applications from the “inside out”. This provides much greater sight into possible flaws than a scanner that only interacts with a application as a user would.</p>
 
-<p>When enabling CSP, we can define a whitelist of resources that the
-browser will load. Any resources (even including inline scripts) that
-are not explicitly enabled in the whitelist will be blocked by the browser.</p>
-
-<p>As an <a href="https://blogs.technet.microsoft.com/srd/2013/09/27/software-defense-series-exploit-mitigation-and-vulnerability-detection/">exploit mitigation</a>,
-it’s important to remember that while CSP makes exploitation more
-difficult, it does not prevent the bugs that make an exploit possible
-in the first place (lack of appropriate
-encoding/sanitization). Therefore, its protection will never be
-complete, and people will continue to find bypasses for even the most
-rigerous policies. That said, it’s an important part of a Defense in
-Depth strategy for any web application.</p>
-
-<h1 id="acceptance-criteria">Acceptance Criteria</h1>
+<h3 id="why-is-it-needed">Why is it needed?</h3>
 
 <ul>
-  <li>A policy is created that blocks any resources not required by the application</li>
-  <li>The policy is enabled via the <code class="highlighter-rouge">Content-Security-Policy</code> header</li>
-  <li>An api or service is created to parse CSP reports</li>
-  <li>Reporting is enabled via the <code class="highlighter-rouge">report-uri</code> directive</li>
-  <li>The team understands what limitations CSP adds, and how to check for violations</li>
-  <li>The team has a process for updating the policy as requirements change</li>
+  <li>Sometimes the easiest or most obvious way to do something is also not secure.
+These tools provide fast feedback if a mistake is made.</li>
+  <li>Continuous, fast feedback about potential vulnerabilities saves teams time and
+stress.</li>
 </ul>
 
-<h1 id="resources">Resources</h1>
+<h3 id="when-should-i-use-this">When should I use this?</h3>
 
 <ul>
-  <li>https://scotthelme.co.uk/content-security-policy-an-introduction/</li>
-  <li>https://developers.google.com/web/fundamentals/security/csp/</li>
+  <li>In your CI pipeline. Automatically run the scanner periodically, possibly
+alongside other automated tests following a checkin if it can complete quickly
+enough.</li>
+  <li>During manual testing. More in-depth scans can be run and verified along with
+the other necessary manual tests. Testers can also start to do some
+exploratory security testing after familiarizing themselves with typical
+weaknesses.</li>
 </ul>
+
+<h3 id="tools">Tools</h3>
+
+<ul>
+  <li><a href="/security/webappsec/tools/agnostic-tools/agnostic-static-analysis.html">Agnostic static analysis</a></li>
+  <li><a href="/security/webappsec/tools/java-tools/java-static-analysis.html">Static analysis for Java</a></li>
+  <li><a href="/security/webappsec/tools/javascript-tools/javascript-static-analysis.html">Static analysis for Javascript</a></li>
+  <li><a href="/security/webappsec/tools/python-tools/python-static-analysis.html">Static analysis for Python</a></li>
+  <li><a href="/security/webappsec/tools/ruby-tools/ruby-static-analysis.html">Static analysis for Ruby</a></li>
+</ul>
+
+<h3 id="further-reading">Further reading</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Static_program_analysis">Wikipedia page on static program analysis</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis">Wikipedia list of static program analyzers</a></li>
+  <li><a href="https://www.owasp.org/index.php/Static_Code_Analysis">OWASP wiki page on static program analysis</a></li>
+  <li><a href="https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html">NIST list of security-focused static program analyzers</a></li>
+</ul>
+
 
         </main>
       </div>

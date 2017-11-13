@@ -3,14 +3,14 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dependency Checker</title>
+  <title>Agnostic dynamic analysis</title>
 
   <link rel="shortcut icon" type="image/ico" href="/security/assets/favicon.ico">
 
   <!-- no custom css detected -->
 
   
-  <meta name="description" content="Dependency Checker" />
+  <meta name="description" content="Agnostic dynamic analysis" />
   
 
   <link rel="stylesheet" href="/security/assets/main.css">
@@ -47,32 +47,34 @@
 </li>
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/best-practices/">Best Practices</a>
-</li><li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/access-controls.html">Access Controls</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/csp.html">Content Security Policy</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link active" href="/security/webappsec/best-practices/dependency-checker.html">Dependency Checker</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/environment-isolation.html">Environment Isolation</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/https.html">Enforce HTTPS</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/input.html">Validate User Input</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/logging.html">Logging</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/secrets.html">Secrets</a>
 </li>
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/tools/">Tools</a>
+</li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/agnostic-tools/">Agnostic</a>
+</li><li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/tools/agnostic-tools/agnostic-dependency-checker.html">Agnostic dependency check</a>
+</li>
+<li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/tools/agnostic-tools/agnostic-static-analysis.html">Agnostic static analysis</a>
+</li>
+<li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link active" href="/security/webappsec/tools/agnostic-tools/agnostic-dynamic-analysis.html">Agnostic dynamic analysis</a>
+</li>
+<li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/tools/agnostic-tools/agnostic-secrets-management.html">Agnostic secrets management</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/java-tools/">Java</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/javascript-tools/">Javascript</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/python-tools/">Python</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/ruby-tools/">Ruby</a>
 </li>
 <li class="nav-level-0 nav-item">
   <a class="nav-level-0 nav-link " href="/security/netsec/">Network Security</a>
@@ -86,17 +88,10 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1>Dependency Checker</h1>
-          <p>Using components with known vulnerabilities is a <a href="https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities">widespread and serious problem</a> in application development. It can lead to easy, scannable vulnerabilities in your app. Recommended tools for a variety of languages are provided elsewhere in this project:</p>
+          <h1 class="title">Agnostic dynamic analysis</h1>
+          <h2 id="arachni">Arachni</h2>
 
-<ul>
-  <li><a href="https://github.com/saradiaz/appsec-toolbelt/blob/master/Ruby/dependency-checkers.md">Ruby</a></li>
-  <li><a href="https://github.com/saradiaz/appsec-toolbelt/blob/master/Java/dependency-check.md">Java</a></li>
-  <li><a href="https://github.com/saradiaz/appsec-toolbelt/tree/master/JavaScript/dependency-checking">JavaScript</a></li>
-  <li><a href="https://github.com/saradiaz/appsec-toolbelt/blob/master/Python/dependency-check.md">Python</a></li>
-</ul>
-
-<p>Are you using a tool that isn’t in this repo? Are you developing with a language or framework not currently supported? Create an issue or submit a PR so we can get it added as quickly as possible.</p>
+<p><a href="http://www.arachni-scanner.com/">Arachni</a> is a web application security scanner framework that works well with Rails, but can also be used with many frameworks.</p>
 
 
         </main>

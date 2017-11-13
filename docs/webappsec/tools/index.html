@@ -51,19 +51,19 @@
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link active" href="/security/webappsec/tools/">Tools</a>
 </li><li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/agnostic/">Agnostic</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/agnostic-tools/">Agnostic</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/java/">Java</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/java-tools/">Java</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/javascript/">Javascript</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/javascript-tools/">Javascript</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/python/">Python</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/python-tools/">Python</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/ruby/">Ruby</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/ruby-tools/">Ruby</a>
 </li>
 <li class="nav-level-0 nav-item">
   <a class="nav-level-0 nav-link " href="/security/netsec/">Network Security</a>
@@ -77,8 +77,228 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1>Web Application Tools</h1>
-          <p>Tools</p>
+          <h1 class="title">Web Application Tools</h1>
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#tools-by-languages">Tools by languages</a></li>
+<li class="toc-entry toc-h2"><a href="#dependency-check">Dependency check</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-it">What is it?</a></li>
+<li class="toc-entry toc-h3"><a href="#why-is-it-needed">Why is it needed?</a></li>
+<li class="toc-entry toc-h3"><a href="#when-should-i-use-this">When should I use this?</a></li>
+<li class="toc-entry toc-h3"><a href="#tools">Tools</a></li>
+<li class="toc-entry toc-h3"><a href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#static-analysis">Static analysis</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-it-1">What is it?</a></li>
+<li class="toc-entry toc-h3"><a href="#why-is-it-needed-1">Why is it needed?</a></li>
+<li class="toc-entry toc-h3"><a href="#when-should-i-use-this-1">When should I use this?</a></li>
+<li class="toc-entry toc-h3"><a href="#tools-1">Tools</a></li>
+<li class="toc-entry toc-h3"><a href="#further-reading-1">Further reading</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dynamic-analysis">Dynamic analysis</a></li>
+<li class="toc-entry toc-h2"><a href="#secret-management">Secret management</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-it-2">What is it?</a></li>
+<li class="toc-entry toc-h3"><a href="#why-is-it-needed-2">Why is it needed?</a></li>
+<li class="toc-entry toc-h3"><a href="#tools-2">Tools</a></li>
+</ul>
+</li>
+</ul><h2 id="tools-by-languages">
+<a id="tools-by-languages" class="anchor" href="#tools-by-languages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tools by languages</h2>
+
+<ul class="content-menu">
+<li class="nav-level-0 ">
+  <a class="nav-level-0  " href="/security/webappsec/tools/agnostic-tools/">Agnostic</a>: Web application security tools that work with all languages
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/agnostic-tools/agnostic-dependency-checker.html">Agnostic dependency check</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/agnostic-tools/agnostic-static-analysis.html">Agnostic static analysis</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/agnostic-tools/agnostic-dynamic-analysis.html">Agnostic dynamic analysis</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/agnostic-tools/agnostic-secrets-management.html">Agnostic secrets management</a>
+</li>
+<li class="nav-level-0 ">
+  <a class="nav-level-0  " href="/security/webappsec/tools/java-tools/">Java</a>: Web application security tools for Java
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/java-tools/java-dependency-checker.html">Dependency check for Java</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/java-tools/java-static-analysis.html">Static analysis for Java</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/java-tools/java-secrets-management.html">Secrets management for Java</a>
+</li>
+<li class="nav-level-0 ">
+  <a class="nav-level-0  " href="/security/webappsec/tools/javascript-tools/">Javascript</a>: Web application security tools for Javascript
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/javascript-tools/javascript-dependency-checker.html">Dependency check for Javascript</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/javascript-tools/javascript-static-analysis.html">Static analysis for Javascript</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/javascript-tools/javascript-secrets-management.html">Secrets management for Javascript</a>
+</li>
+<li class="nav-level-0 ">
+  <a class="nav-level-0  " href="/security/webappsec/tools/python-tools/">Python</a>: Web application security tools for Python
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/python-tools/python-dependency-checker.html">Dependency check for Python</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/python-tools/python-static-analysis.html">Static analysis for Python</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/python-tools/python-secrets-management.html">Secrets management for Python</a>
+</li>
+<li class="nav-level-0 ">
+  <a class="nav-level-0  " href="/security/webappsec/tools/ruby-tools/">Ruby</a>: Web application security tools for Ruby
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/ruby-tools/ruby-dependency-checker.html">Dependency check for Ruby</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/ruby-tools/ruby-static-analysis.html">Static analysis for Ruby</a>
+</li>
+<li class="nav-level-1 ">
+  <a class="nav-level-1  " href="/security/webappsec/tools/ruby-tools/ruby-secrets-management.html">Secrets management for Ruby</a>
+</li>
+</ul>
+
+<h2 id="dependency-check">
+<a id="dependency-check" class="anchor" href="#dependency-check" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependency check</h2>
+
+<h3 id="what-is-it">
+<a id="what-is-it" class="anchor" href="#what-is-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is it?</h3>
+
+<p>A dependency checker is a tool that attempts to detect when updates are available for third party dependencies (libraries, frameworks, etc) used in your application due to publicly disclosed security vulnerabilities.</p>
+
+<h3 id="why-is-it-needed">
+<a id="why-is-it-needed" class="anchor" href="#why-is-it-needed" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is it needed?</h3>
+
+<ul>
+  <li>Up to 90% of many applications are comprised of third party components.</li>
+  <li>Applications often inadvertently introduce vulnerabilities by failing to update components in a timely manner or by pulling in outdated components with vulnerabilities.</li>
+</ul>
+
+<h3 id="when-should-i-use-this">
+<a id="when-should-i-use-this" class="anchor" href="#when-should-i-use-this" aria-hidden="true"><span class="octicon octicon-link"></span></a>When should I use this?</h3>
+
+<p>All the time.</p>
+
+<p>Using components with known vulnerabilities is a widespread and serious problem in application development. It can lead to easy, scannable vulnerabilities in your app. Recommended tools for a variety of languages are provided elsewhere in this project:</p>
+
+<h3 id="tools">
+<a id="tools" class="anchor" href="#tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tools</h3>
+
+<ul>
+  <li><a href="/security/webappsec/tools/agnostic-tools/agnostic-dependency-checker.html">Agnostic dependency check</a></li>
+  <li><a href="/security/webappsec/tools/java-tools/java-dependency-checker.html">Dependency check for Java</a></li>
+  <li><a href="/security/webappsec/tools/javascript-tools/javascript-dependency-checker.html">Dependency check for Javascript</a></li>
+  <li><a href="/security/webappsec/tools/python-tools/python-dependency-checker.html">Dependency check for Python</a></li>
+  <li><a href="/security/webappsec/tools/ruby-tools/ruby-dependency-checker.html">Dependency check for Ruby</a></li>
+</ul>
+
+<h3 id="further-reading">
+<a id="further-reading" class="anchor" href="#further-reading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further reading</h3>
+
+<ul>
+  <li><a href="https://www.owasp.org/index.php/OWASP_Dependency_Check">https://www.owasp.org/index.php/OWASP_Dependency_Check</a></li>
+</ul>
+
+<h2 id="static-analysis">
+<a id="static-analysis" class="anchor" href="#static-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Static analysis</h2>
+
+<h3 id="what-is-it">
+<a id="what-is-it-1" class="anchor" href="#what-is-it-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is it?</h3>
+
+<p>A static analysis tool, referred to as a Static Application Security Tool (SAST) in the context of security, identifies potential security flaws in source code, byte code, and binaries. SAST tools provide a powerful way to identify potential defects by analyzing applications from the “inside out”. This provides much greater sight into possible flaws than a scanner that only interacts with a application as a user would.</p>
+
+<h3 id="why-is-it-needed">
+<a id="why-is-it-needed-1" class="anchor" href="#why-is-it-needed-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is it needed?</h3>
+
+<ul>
+  <li>Sometimes the easiest or most obvious way to do something is also not secure.
+These tools provide fast feedback if a mistake is made.</li>
+  <li>Continuous, fast feedback about potential vulnerabilities saves teams time and
+stress.</li>
+</ul>
+
+<h3 id="when-should-i-use-this">
+<a id="when-should-i-use-this-1" class="anchor" href="#when-should-i-use-this-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>When should I use this?</h3>
+
+<ul>
+  <li>In your CI pipeline. Automatically run the scanner periodically, possibly
+alongside other automated tests following a checkin if it can complete quickly
+enough.</li>
+  <li>During manual testing. More in-depth scans can be run and verified along with
+the other necessary manual tests. Testers can also start to do some
+exploratory security testing after familiarizing themselves with typical
+weaknesses.</li>
+</ul>
+
+<h3 id="tools">
+<a id="tools-1" class="anchor" href="#tools-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tools</h3>
+
+<ul>
+  <li><a href="/security/webappsec/tools/agnostic-tools/agnostic-static-analysis.html">Agnostic static analysis</a></li>
+  <li><a href="/security/webappsec/tools/java-tools/java-static-analysis.html">Static analysis for Java</a></li>
+  <li><a href="/security/webappsec/tools/javascript-tools/javascript-static-analysis.html">Static analysis for Javascript</a></li>
+  <li><a href="/security/webappsec/tools/python-tools/python-static-analysis.html">Static analysis for Python</a></li>
+  <li><a href="/security/webappsec/tools/ruby-tools/ruby-static-analysis.html">Static analysis for Ruby</a></li>
+</ul>
+
+<h3 id="further-reading">
+<a id="further-reading-1" class="anchor" href="#further-reading-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further reading</h3>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Static_program_analysis">Wikipedia page on static program analysis</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis">Wikipedia list of static program analyzers</a></li>
+  <li><a href="https://www.owasp.org/index.php/Static_Code_Analysis">OWASP wiki page on static program analysis</a></li>
+  <li><a href="https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html">NIST list of security-focused static program analyzers</a></li>
+</ul>
+
+<h2 id="dynamic-analysis">
+<a id="dynamic-analysis" class="anchor" href="#dynamic-analysis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamic analysis</h2>
+
+<p>To be written</p>
+
+<h2 id="secret-management">
+<a id="secret-management" class="anchor" href="#secret-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Secret management</h2>
+
+<h3 id="what-is-it-1">
+<a id="what-is-it-2" class="anchor" href="#what-is-it-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is it?</h3>
+
+<p>Secrets such as passwords, credentials, access tokens, certificates, and other confidential information are something we can’t allow to fall into the wrong hands. A secret management tool makes it possible to manage these kinds of secrets safely.</p>
+
+<h3 id="why-is-it-needed-1">
+<a id="why-is-it-needed-2" class="anchor" href="#why-is-it-needed-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is it needed?</h3>
+
+<p>We see this more than you’d think. The dangers of leaving secrets into your code are wide ranging and severe. It could lead to everything from an attacker compromising a user’s session to full owning your application, and even the application server, gaining access to your database, and impersonating you to uncover more valuable data (and this is not an exhaustive list).</p>
+
+<ul>
+  <li>Applications rely on secrets to access services such as databases, encrypted files, and to securely communicate with other applications and systems.</li>
+  <li>Team members may also need a way to manage and share similar confidential information.</li>
+  <li>Writing secrets in a place they can be easily retrieved exposes projects to unnecessary risks. This includes doing things like writing them on sticky notes or in source code or configuration files.</li>
+</ul>
+
+<h3 id="tools-1">
+<a id="tools-2" class="anchor" href="#tools-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tools</h3>
+
+<ul>
+  <li><a href="/security/webappsec/tools/agnostic-tools/agnostic-secrets-management.html">Agnostic secrets management</a></li>
+</ul>
+
 
         </main>
       </div>

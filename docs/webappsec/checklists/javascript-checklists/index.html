@@ -3,14 +3,14 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Abusing Input</title>
+  <title>Javascript Checklists</title>
 
   <link rel="shortcut icon" type="image/ico" href="/security/assets/favicon.ico">
 
   <!-- no custom css detected -->
 
   
-  <meta name="description" content="Don't. Trust. The. User. Ever. That is pretty much it." />
+  <meta name="description" content="Javascript Checklists" />
   
 
   <link rel="stylesheet" href="/security/assets/main.css">
@@ -41,20 +41,22 @@
   <a class="nav-level-0 nav-link " href="/security/webappsec/">Web Application Security</a>
 </li><li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/fundamentals/">Fundamentals</a>
-</li><li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/fundamentals/abusing-cookies.html">Abusing Cookies</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/fundamentals/abusing-filesystems.html">Abusing Filesystems</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link active" href="/security/webappsec/fundamentals/abusing-input.html">Abusing Input</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/fundamentals/other-tricks.html">Other Tricks</a>
 </li>
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/checklists/">Checklists</a>
+</li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/checklists/generic-checklist.html">Generic</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/checklists/ruby-checklists/">Ruby</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link active" href="/security/webappsec/checklists/javascript-checklists/">Javascript</a>
+</li><li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/checklists/javascript-checklists/nodejs.html">NodeJS</a>
+</li>
+<li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/checklists/javascript-checklists/expressjs.html">ExpressJS</a>
 </li>
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/best-practices/">Best Practices</a>
@@ -74,8 +76,33 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1 class="title">Abusing Input</h1>
-          
+          <h1 class="title">Javascript Checklists</h1>
+          <h2 id="platforms">Platforms</h2>
+
+<ul>
+  <li><a href="/security/webappsec/checklists/javascript-checklists/expressjs.html">ExpressJS Pre-flight Checklist</a></li>
+  <li><a href="/security/webappsec/checklists/javascript-checklists/nodejs.html">NodeJS Checklist</a></li>
+</ul>
+
+<h2 id="secure-coding-practices">Secure Coding Practices</h2>
+
+<h3 id="avoid-stringify">Avoid stringify()</h3>
+
+<p>The command <code class="highlighter-rouge">JSON.stringify()</code> is not safe and can lead to XSS attacks.</p>
+
+<p>Instead, use <code class="highlighter-rouge">serialize-javascript</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$npm install --save-dev serialize-javascript
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://github.com/yahoo/serialize-javascript">View on GitHub</a></li>
+  <li><a href="https://medium.com/node-security/the-most-common-xss-vulnerability-in-react-js-applications-2bdffbcc1fa0">Security risk details</a></li>
+</ul>
+
+<h2 id="resources--advisories">Resources &amp; Advisories</h2>
+
+<p><a href="https://medium.com/node-security">https://medium.com/node-security</a></p>
 
         </main>
       </div>

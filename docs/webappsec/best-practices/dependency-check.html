@@ -3,14 +3,14 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Content Security Policy</title>
+  <title>Dependency Checker</title>
 
   <link rel="shortcut icon" type="image/ico" href="/security/assets/favicon.ico">
 
   <!-- no custom css detected -->
 
   
-  <meta name="description" content="Content Security Policy" />
+  <meta name="description" content="Dependency Checker" />
   
 
   <link rel="stylesheet" href="/security/assets/main.css">
@@ -51,7 +51,7 @@
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/input.html">Validate User Input</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/dependency-check.html">Dependency Checker</a>
+  <a class="nav-level-2 nav-link active" href="/security/webappsec/best-practices/dependency-check.html">Dependency Checker</a>
 </li>
 <li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/static-analysis.html">Static analysis</a>
@@ -63,7 +63,7 @@
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/access-controls.html">Access Controls</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link active" href="/security/webappsec/best-practices/csp.html">Content Security Policy</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/csp.html">Content Security Policy</a>
 </li>
 <li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/environment-isolation.html">Environment Isolation</a>
@@ -89,44 +89,40 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1 class="title">Content Security Policy</h1>
-          <h1 id="description">Description</h1>
+          <h1 class="title">Dependency Checker</h1>
+          <h3 id="what-is-it">What is it?</h3>
 
-<p>Content Security Policy limits the resources that a web browser will
-load, making it more difficult for attackers to carry out a
-<a href="https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29">Cross Site Scripting</a>
-attack.</p>
+<p>A dependency checker is a tool that attempts to detect when updates are available for third party dependencies (libraries, frameworks, etc) used in your application due to publicly disclosed security vulnerabilities.</p>
 
-<p>When enabling CSP, we can define a whitelist of resources that the
-browser will load. Any resources (even including inline scripts) that
-are not explicitly enabled in the whitelist will be blocked by the browser.</p>
-
-<p>As an <a href="https://blogs.technet.microsoft.com/srd/2013/09/27/software-defense-series-exploit-mitigation-and-vulnerability-detection/">exploit mitigation</a>,
-it’s important to remember that while CSP makes exploitation more
-difficult, it does not prevent the bugs that make an exploit possible
-in the first place (lack of appropriate
-encoding/sanitization). Therefore, its protection will never be
-complete, and people will continue to find bypasses for even the most
-rigerous policies. That said, it’s an important part of a Defense in
-Depth strategy for any web application.</p>
-
-<h1 id="acceptance-criteria">Acceptance Criteria</h1>
+<h3 id="why-is-it-needed">Why is it needed?</h3>
 
 <ul>
-  <li>A policy is created that blocks any resources not required by the application</li>
-  <li>The policy is enabled via the <code class="highlighter-rouge">Content-Security-Policy</code> header</li>
-  <li>An api or service is created to parse CSP reports</li>
-  <li>Reporting is enabled via the <code class="highlighter-rouge">report-uri</code> directive</li>
-  <li>The team understands what limitations CSP adds, and how to check for violations</li>
-  <li>The team has a process for updating the policy as requirements change</li>
+  <li>Up to 90% of many applications are comprised of third party components.</li>
+  <li>Applications often inadvertently introduce vulnerabilities by failing to update components in a timely manner or by pulling in outdated components with vulnerabilities.</li>
 </ul>
 
-<h1 id="resources">Resources</h1>
+<h3 id="when-should-i-use-this">When should I use this?</h3>
+
+<p>All the time.</p>
+
+<p>Using components with known vulnerabilities is a widespread and serious problem in application development. It can lead to easy, scannable vulnerabilities in your app. Recommended tools for a variety of languages are provided elsewhere in this project:</p>
+
+<h3 id="tools">Tools</h3>
 
 <ul>
-  <li>https://scotthelme.co.uk/content-security-policy-an-introduction/</li>
-  <li>https://developers.google.com/web/fundamentals/security/csp/</li>
+  <li><a href="/security/webappsec/tools/agnostic-tools/agnostic-dependency-checker.html">Agnostic dependency check</a></li>
+  <li><a href="/security/webappsec/tools/java-tools/java-dependency-checker.html">Dependency check for Java</a></li>
+  <li><a href="/security/webappsec/tools/javascript-tools/javascript-dependency-checker.html">Dependency check for Javascript</a></li>
+  <li><a href="/security/webappsec/tools/python-tools/python-dependency-checker.html">Dependency check for Python</a></li>
+  <li><a href="/security/webappsec/tools/ruby-tools/ruby-dependency-checker.html">Dependency check for Ruby</a></li>
 </ul>
+
+<h3 id="further-reading">Further reading</h3>
+
+<ul>
+  <li><a href="https://www.owasp.org/index.php/OWASP_Dependency_Check">https://www.owasp.org/index.php/OWASP_Dependency_Check</a></li>
+</ul>
+
 
         </main>
       </div>

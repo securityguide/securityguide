@@ -3,14 +3,14 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agnostic</title>
+  <title>Static analysis for Python</title>
 
   <link rel="shortcut icon" type="image/ico" href="/security/assets/favicon.ico">
 
   <!-- no custom css detected -->
 
   
-  <meta name="description" content="Agnostic" />
+  <meta name="description" content="Static analysis for Python" />
   
 
   <link rel="stylesheet" href="/security/assets/main.css">
@@ -51,19 +51,27 @@
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/tools/">Tools</a>
 </li><li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link active" href="/security/webappsec/tools/agnostic/">Agnostic</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/agnostic-tools/">Agnostic</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/java/">Java</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/java-tools/">Java</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/javascript/">Javascript</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/javascript-tools/">Javascript</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/python/">Python</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/python-tools/">Python</a>
+</li><li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/tools/python-tools/python-dependency-checker.html">Dependency check for Python</a>
+</li>
+<li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link active" href="/security/webappsec/tools/python-tools/python-static-analysis.html">Static analysis for Python</a>
+</li>
+<li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/tools/python-tools/python-secrets-management.html">Secrets management for Python</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/ruby/">Ruby</a>
+  <a class="nav-level-2 nav-link " href="/security/webappsec/tools/ruby-tools/">Ruby</a>
 </li>
 <li class="nav-level-0 nav-item">
   <a class="nav-level-0 nav-link " href="/security/netsec/">Network Security</a>
@@ -77,8 +85,25 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1>Agnostic</h1>
-          <p>agnostic</p>
+          <h1 class="title">Static analysis for Python</h1>
+          <h2 id="bandit">Bandit</h2>
+
+<p>Bandit is a static security analysis tool for Python. Bandit is meant to find the common issues, so please don’t take a passing scan to mean bullet-proof code. You may want to use Bandit in conjunction with a language-agnositc analysis tool like Grepbugs.</p>
+
+<p>Its <a href="https://github.com/openstack/bandit/blob/master/README.rst">README.rst</a> is pretty great (somehow both extensive and succinct), so I won’t say too much here.</p>
+
+<p><strong>Some Notes</strong></p>
+
+<p><strong>1)</strong> When you have run a scan with bandit, be sure to pay special attention to the following lines in the output:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Code scanned:
+  Total lines of code: 645
+  Total lines skipped (#nosec): 0
+</code></pre></div></div>
+
+<p>Make sure those numbers make sense – if you forget to set the -r option, bandit will not scan your project directories recursively.</p>
+
+<p><strong>2)</strong> Similarly, try running bandit with the <code class="highlighter-rouge">--verbose</code> option the first time you run it (or whenever you are trying to debug). It lists files included in and excluded from the scan.</p>
 
         </main>
       </div>

@@ -52,7 +52,7 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1>ThoughtWorks Security Guide</h1>
+          <h1 class="title">ThoughtWorks Security Guide</h1>
           <h2 id="contents">Contents</h2>
 
 <p><strong><a href="webappsec">WebAppSec</a></strong> Writing and maintaining secure web applications.</p>
@@ -62,6 +62,41 @@
 <p><strong><a href="opsec">OpSec</a></strong> How to prevent attacks against your devices and your data.</p>
 
 <h2 id="contributing">Contributing</h2>
+
+<h4 id="editing-tips">Editing tips</h4>
+
+<p><strong>Syntax</strong></p>
+
+<p>These pages use Markdown syntax (<a href="https://kramdown.gettalong.org/quickref.html">Kramdown flavored</a>).</p>
+
+<p><strong>Wiki links</strong></p>
+
+<p>In addition to traditional Markdown syntax for links, you can use wiki-style links, like so:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[page_name]]
+[[page_name|Title]]
+[[Title =&gt; page_name]]
+</code></pre></div></div>
+
+<p>Using wiki-style links is highly preferred, because these links will not break when a page moves and missing links will produce an error notice.</p>
+
+<p><strong>Includes</strong></p>
+
+<p>You can mix in <a href="https://jekyllrb.com/docs/templates/">Liquid tags</a> in your Markdown pages. For example, this text:</p>
+
+<blockquote>
+  <p>{% include blah.md %}</p>
+</blockquote>
+
+<p>Will insert the contents of <code class="highlighter-rouge">pages/_includes/blah.md</code> into the current page.</p>
+
+<p>To include a formatted code block:</p>
+
+<blockquote>
+  <p>```bash<br />
+{% include script.sh %}<br />
+```</p>
+</blockquote>
 
 <h4 id="simple-method-editing-on-github">Simple method: editing on Github</h4>
 
@@ -135,32 +170,38 @@ how to fork a repository see <a href="https://help.github.com/articles/fork-a-re
 
 <p>In order to preview your edits before you commit them, you will need a program called <code class="highlighter-rouge">jekyll</code>.</p>
 
-<p>To install for Mac:</p>
+<p>Install <code class="highlighter-rouge">bundler</code> for Mac:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ brew install ruby
-$ gem install jekyll
+$ gem install bundler
 </code></pre></div></div>
 
-<p>To install on Debian or Ubuntu (Wheezy or later):</p>
+<p>Install <code class="highlighter-rouge">bundler</code> on Debian/Ubuntu:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># apt install ruby ruby-dev build-essential
-# gem install jekyll
+# gem install bundler
+</code></pre></div></div>
+
+<p>Install <code class="highlighter-rouge">jekyll</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd security
+$ bundle
 </code></pre></div></div>
 
 <p><strong>Previewing pages</strong></p>
 
 <p>When you are making changes, you can prevew the changes by running the jekyll server:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd security
-make serve
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd security
+$ make serve
 </code></pre></div></div>
 
 <p>Then browse to <a href="http://localhost:4000">http://localhost:4000</a>. Any page you view this way gets re-rendered when it is loaded.</p>
 
 <p>After you have made changes, run this command to completely render the static HTML for the entire site:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd security
-make build
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd security
+$ make build
 </code></pre></div></div>
 
 <p><strong>Putting it all together</strong></p>
@@ -179,10 +220,10 @@ make build
 
 <p>After a while, your fork of the repo will become out of date. In order to refresh it with the lastest upstream content:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add upstream https://github.com/thoughtworks/security
-git checkout master
-git fetch upstream
-git rebase upstream/master
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add upstream https://github.com/thoughtworks/security
+$ git checkout master
+$ git fetch upstream
+$ git rebase upstream/master
 </code></pre></div></div>
 
 

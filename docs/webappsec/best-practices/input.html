@@ -48,13 +48,22 @@
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/best-practices/">Best Practices</a>
 </li><li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link active" href="/security/webappsec/best-practices/input.html">Validate User Input</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/dependency-check.html">Dependency Checker</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/static-analysis.html">Static analysis</a>
+</li>
+<li class="nav-level-2 nav-item">
+  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/secrets-management.html">Secrets Management</a>
+</li>
+<li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/access-controls.html">Access Controls</a>
 </li>
 <li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/csp.html">Content Security Policy</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/dependency-checker.html">Dependency Checker</a>
 </li>
 <li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/environment-isolation.html">Environment Isolation</a>
@@ -63,13 +72,7 @@
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/https.html">Enforce HTTPS</a>
 </li>
 <li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link active" href="/security/webappsec/best-practices/input.html">Validate User Input</a>
-</li>
-<li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/logging.html">Logging</a>
-</li>
-<li class="nav-level-2 nav-item">
-  <a class="nav-level-2 nav-link " href="/security/webappsec/best-practices/secrets.html">Secrets</a>
 </li>
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/tools/">Tools</a>
@@ -86,8 +89,42 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1>Validate User Input</h1>
-          <h2 id="validate-user-inputs">Validate User Inputs</h2>
+          <h1 class="title">Validate User Input</h1>
+          <p>https://martinfowler.com/articles/web-security-basics.html</p>
+
+<p>Reject Unexpected Form Input</p>
+
+<ul>
+  <li>White list when you can</li>
+  <li>Black list when you can’t whitelist</li>
+  <li>Keep your contract as restrictive as possible</li>
+  <li>Make sure you alert about the possible attack</li>
+  <li>Avoid reflecting input back to a user</li>
+  <li>Reject the web content before it gets deeper into application logic to minimize ways to mishandle untrusted data or, even better, use your web framework to whitelist input</li>
+</ul>
+
+<p>Encode HTML Output</p>
+
+<ul>
+  <li>Output encode all application data on output with an appropriate codec</li>
+  <li>Use your framework’s output encoding capability, if available</li>
+  <li>Avoid nested rendering contexts as much as possible</li>
+  <li>Store your data in raw form and encode at rendering time</li>
+  <li>Avoid unsafe framework and JavaScript calls that avoid encoding</li>
+</ul>
+
+<p>Bind Parameters for Database Queries</p>
+
+<ul>
+  <li>Avoid building SQL (or NoSQL equivalent) from user input</li>
+  <li>Bind all parameterized data, both queries and stored procedures</li>
+  <li>Use the native driver binding function rather than trying to handle the encoding yourself</li>
+  <li>Don’t think stored procedures or ORM tools will save you. You need to use binding functions for those, too</li>
+  <li>NoSQL doesn’t make you injection-proof</li>
+</ul>
+
+<h2 id="validate-user-inputs">Validate User Inputs</h2>
+
 <p>If you have fields that accept user input in your application, making it a priority have some validations on this input is imperative to a basic level of security on your application.</p>
 
 <p>An <a href="https://martinfowler.com/articles/web-security-basics.html#EncodeHtmlOutput">excellent blog</a> post by Cade Cairns and Daniel Somerfield outlines some of the dangers of accepting as-is user input, along with some mitigation strategies.</p>

@@ -3,14 +3,14 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Web Application Checklists</title>
+  <title>ExpressJS Pre-flight Checklist</title>
 
   <link rel="shortcut icon" type="image/ico" href="/security/assets/favicon.ico">
 
   <!-- no custom css detected -->
 
   
-  <meta name="description" content="Web Application Checklists" />
+  <meta name="description" content="ExpressJS Pre-flight Checklist" />
   
 
   <link rel="stylesheet" href="/security/assets/main.css">
@@ -43,7 +43,7 @@
   <a class="nav-level-1 nav-link " href="/security/webappsec/fundamentals/">Fundamentals</a>
 </li>
 <li class="nav-level-1 nav-item">
-  <a class="nav-level-1 nav-link active" href="/security/webappsec/checklists/">Checklists</a>
+  <a class="nav-level-1 nav-link " href="/security/webappsec/checklists/">Checklists</a>
 </li><li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/checklists/generic-checklist.html">Generic</a>
 </li>
@@ -52,6 +52,11 @@
 </li>
 <li class="nav-level-2 nav-item">
   <a class="nav-level-2 nav-link " href="/security/webappsec/checklists/javascript-checklists/">Javascript</a>
+</li><li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link " href="/security/webappsec/checklists/javascript-checklists/nodejs.html">NodeJS</a>
+</li>
+<li class="nav-level-3 nav-item">
+  <a class="nav-level-3 nav-link active" href="/security/webappsec/checklists/javascript-checklists/expressjs.html">ExpressJS</a>
 </li>
 <li class="nav-level-1 nav-item">
   <a class="nav-level-1 nav-link " href="/security/webappsec/best-practices/">Best Practices</a>
@@ -71,28 +76,52 @@
 
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          <h1 class="title">Web Application Checklists</h1>
-          <ul class="content-menu"><li class="nav-level-0 ">
-  <a class="nav-level-0  " href="/security/webappsec/checklists/generic-checklist.html">Generic</a>
-</li>
-<li class="nav-level-0 ">
-  <a class="nav-level-0  " href="/security/webappsec/checklists/ruby-checklists/">Ruby</a>
-</li><li class="nav-level-1 ">
-  <a class="nav-level-1  " href="/security/webappsec/checklists/ruby-checklists/rails-4.html">Rails 4</a>
-</li>
-<li class="nav-level-1 ">
-  <a class="nav-level-1  " href="/security/webappsec/checklists/ruby-checklists/rails-5.html">Rails 5</a>
-</li>
-<li class="nav-level-0 ">
-  <a class="nav-level-0  " href="/security/webappsec/checklists/javascript-checklists/">Javascript</a>
-</li><li class="nav-level-1 ">
-  <a class="nav-level-1  " href="/security/webappsec/checklists/javascript-checklists/nodejs.html">NodeJS</a>
-</li>
-<li class="nav-level-1 ">
-  <a class="nav-level-1  " href="/security/webappsec/checklists/javascript-checklists/expressjs.html">ExpressJS</a>
-</li></ul>
+          <h1 class="title">ExpressJS Pre-flight Checklist</h1>
+          <h2 id="tools">tools</h2>
 
-<p>TODO: add acceptance criteria for major items, such as dependency check, static analysis, and secrets storage.</p>
+<p>https://www.npmjs.com/package/helmet
+help secure Express/Connect apps with various HTTP headers</p>
+
+<p>Commercial Tools
+https://geekflare.com/nodejs-security-scanner/</p>
+
+<p>OWASP Dependency Check</p>
+
+<p>https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html</p>
+
+<p>For javascript, you need <code class="highlighter-rouge">--enableExperimental</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependency-check.sh --enableExperimental --project 'xxxx' --scan /path/to/project
+</code></pre></div></div>
+
+<p>http://expressjs.com/en/advanced/best-practice-security.html</p>
+
+<h2 id="secure-cookie-options">secure cookie options</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const express = require('express')
+const session = require('express-session')
+
+const app = express()
+const hour = 3600000
+app.use(session({
+  cookie: { secure: true, sameSite: true, maxAge: hour }
+}))
+</code></pre></div></div>
+
+<h2 id="secure-header-options">secure header options</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const express = require('express')
+const helmet = require('helmet')
+
+const app = express()
+app.use(helmet())
+</code></pre></div></div>
+
+<p>https://github.com/helmetjs/helmet</p>
+
+<h2 id="csrf">csrf</h2>
+
+<p>https://www.npmjs.com/package/csurf</p>
 
 
         </main>
