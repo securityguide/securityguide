@@ -7,6 +7,7 @@ toc: true
 ## Configuration
 
 ### TLS is required in production
+
 ### Secrets are stored in the environment
 
 ### Anti-CSRF is enabled

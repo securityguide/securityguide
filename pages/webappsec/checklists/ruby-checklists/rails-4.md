@@ -6,7 +6,7 @@ toc: true
 
 ## Configuration
 
-### ❏ The `config.force_ssl` flag is enabled
+### The `config.force_ssl` flag is enabled
 
 In `environments/production.rb`:
 
@@ -16,17 +16,17 @@ config.force_ssl = true
 
 What this does
 
-> This will set a [[HSTS]] header in application responses, set the `secure` flag for cookies, and redirect HTTP to HTTPS.
+> This will set a HSTS header in application responses, set the `secure` flag for cookies, and redirect HTTP to HTTPS.
 
 Why this is important
 
-> Even if the web server is configured to require TLS, you probably have a redirect configured from plain HTTP to HTTPS. In these cases, there are many situations where a browser might make a plain HTTP connection attempt, potentionally leaking session information in the clear. By adding an [[HSTS]] header and setting the `secure` flag for cookies, you instruct the browser to always require HTTPS.
+> Even if the web server is configured to require TLS, you probably have a redirect configured from plain HTTP to HTTPS. In these cases, there are many situations where a browser might make a plain HTTP connection attempt, potentionally leaking session information in the clear. By adding an HSTS header and setting the `secure` flag for cookies, you instruct the browser to always require HTTPS.
 
-### ❏ Database credentials are stored in the environment
+### Database credentials are stored in the environment
 
 To be written
 
-### ❏ Anti-CSRF is enabled
+### Anti-CSRF is enabled
 
 Make sure that the top of `ApplicationController` has `protect_from_forgery`:
 
@@ -48,19 +48,19 @@ Why this is important
 
 Important details
 
-* Don't disable exceptions: Be very careful if changing `with: :exception`: there are many ways to introduce a vulnerability if you do anything other than throw an exception when the authentity_token does not validate. https://nvisium.com/blog/2014/09/10/understanding-protectfromforgery/
+* Don't disable exceptions: Be very careful if changing `with: :exception`: there are many ways to introduce a vulnerability if you do anything other than throw an exception when the authentity_token does not validate. <https://nvisium.com/blog/2014/09/10/understanding-protectfromforgery/>
 * Idempotent HTTP GET: You must remember to make all GET actions idempotent (does not change the data). This is because the Rails anti-CSRF only applies to HTTP POST.
 * Images are not protected: Images and other assets are not protected by the Rails anti-CSRF or the same-origin policy. If you have images with sensitive information, then you need an additional system to prevent a third party site from stealing these images.
 * If the application has a XSS vulnerability, then CSRF is also defeated.
 
 See also
 
-* http://guides.rubyonrails.org/v4.2/security.html#csrf-countermeasures
-* https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+* <http://guides.rubyonrails.org/v4.2/security.html#csrf-countermeasures>
+* <https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)>
 
 ## Cookies and sessions
 
-### ❏ Authentication always triggers a session reset
+### Authentication always triggers a session reset
 
 You must always call `reset_session` immediately before setting the user id in the session. For example:
 
@@ -94,9 +94,9 @@ Important details
 
 See also
 
-* http://guides.rubyonrails.org/v4.2/security.html#session-fixation
+* <http://guides.rubyonrails.org/v4.2/security.html#session-fixation>
 
-### ❏ If used, CookieStore is used carefully
+### If used, CookieStore is used carefully
 
 By default, Rails applications will use `ActionDispatch::Session::CookieStore` for sessions. CookieStore is fast, but there are several pitfalls to be aware of when using CookieStore.
 
@@ -119,7 +119,7 @@ Because CookieStore is easy to mess up or mis-configure, many people prefer usin
 
 ## Assets
 
-### ❏ All stylesheets have absolute paths
+### All stylesheets have absolute paths
 
 All stylesheets have absolute paths (to prevent CSS-injection via "Relative Path Overwrite")
 
@@ -133,7 +133,7 @@ Why this is important
 
 ## HTTP Headers
 
-### ❏ The gem `secureheaders` is enabled
+### The gem `secureheaders` is enabled
 
 The gem `secureheaders` allows you to conveniently configure many of best practices for HTTP headers and cookie flags.
 
@@ -177,15 +177,15 @@ Important details
 
 See also
 
-* For more configuration options, see https://github.com/twitter/secureheaders/
-* https://www.owasp.org/index.php/Content_Security_Policy_Cheat_Sheet
+* For more configuration options, see <https://github.com/twitter/secureheaders/>
+* <https://www.owasp.org/index.php/Content_Security_Policy_Cheat_Sheet>
 
 TODO
 
 * Decide on CSP recommendation, given the vulnerabilities in almost all CSPs that don't use a separate domain for assets.
 * Explore a more strict recommendation than the `secureheaders` default.
 
-### ❏ Sensitive content is not cached
+### Sensitive content is not cached
 
 If your application has sensitive content, you should instruct the browser to not cache the pages at all:
 
@@ -216,7 +216,7 @@ Why this is important
 
 ## Databases
 
-### ❏ All queries use parameter binding
+### All queries use parameter binding
 
 For example, this:
 
@@ -260,7 +260,7 @@ TODO
 
 ## Views
 
-### ❏ All output is filtered
+### All output is filtered
 
 Remember, all user input should be treated as untrusted and potentially hostile. This is true even if you have attempted to filter this input and only store "safe" values in the database.
 
@@ -283,7 +283,7 @@ The methods `raw` and `html_safe` should used with extreme caution, and only on 
 
 ## Routing and URLs
 
-### ❏ There is no sensitive information in any application URLs
+### There is no sensitive information in any application URLs
 
 For example, the application should never have `?session_id=e1e6a6acadc40d2` in the URL, even for requests which redirect and do not load any page content.
 
@@ -297,7 +297,7 @@ Why this is important
 
 ## Authorization
 
-### ❏ The default is to require authorization
+### The default is to require authorization
 
 There are two approaches to authorization:
 
@@ -345,52 +345,12 @@ Why this is important
 
 ## Pipeline
 
-### ❏ The command `bundler-audit` is run in the pipeline
-
-The command `bundle-audit check --update` will update the vulnerability advisory list and check for vulnerable versions of gems in `Gemfile.lock`.
-
-For example, in `.gitlab-ci.yml`:
-
-```yaml
-stages:
-  - build
-  - checks
-  - test
-  - deploy
-
-bundle_audit:
-  stage: checks
-  script: |
-    gem install bundler-audit
-    bundle-audit check --update
-...
-```
-
-### ❏ Static analysis is run in the pipeline
-
-Brakeman is a great and free static analysis tool for Rails. It does not catch all vulnerabilities, but it contains a wealth of knowledge regarding best practices.
-
-For example, in `.gitlab-ci.yml`:
-
-```yaml
-stages:
-  - build
-  - checks
-  - test
-  - deploy
-
-brakeman:
-  stage: checks
-  script: |
-    gem install brakeman
-    brakeman
-...
-```
+See [[ruby-tools]] for running dependency check and static analysis in your CI pipeline.
 
 ## Links
 
-* http://guides.rubyonrails.org/v4.2/security.html
-* https://www.owasp.org/index.php/Ruby_on_Rails_Cheatsheet
-* https://thoughtworks.jiveon.com/docs/DOC-43719
-* https://rorsecurity.info/
-* HTML5 Security Cheatsheet https://html5sec.org/
+* <http://guides.rubyonrails.org/v4.2/security.html>
+* <https://www.owasp.org/index.php/Ruby_on_Rails_Cheatsheet>
+* <https://thoughtworks.jiveon.com/docs/DOC-43719>
+* <https://rorsecurity.info/>
+* HTML5 Security Cheatsheet <https://html5sec.org/>
