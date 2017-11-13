@@ -24,22 +24,28 @@ To view the pages via a local server:
     cd security
     make serve
 
-## Editing tips
-
-To include a formatted code block:
-
-    {:lang='bash'}
-    ~~~
-    {% include script.sh %}
-    ~~~
-
-## Links
-
-Alternate stylesheets for the Rouge code syntax highlighter: https://github.com/richleland/pygments-css
-
 ## TODO
 
-* auto link to page by name
+* add the following topics
+  * deployment
+    * infrastructure as code
+    * AWS best practices
+      * obtain auth tokens from okta
+  * Security Documentation
+    * why documentation is important
+    * what makes a good network diagram
+    * data
+      * classification policy
+      * lifecycle
+      * minimization
+    * networks
+    * services
+    * connections
+    * logging and auditing
+  * Security Reviews
+    * requesting review
+    * pre-review questionnaire
+    * post-review process
+
 * javascript search https://github.com/christian-fei/Simple-Jekyll-Search
 * improve CSS
-* autolink urls https://github.com/ivantsepp/jekyll-autolink_email
