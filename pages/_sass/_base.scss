@@ -12,9 +12,14 @@ body {
 //
 
 h1 {
+  font-size: 3rem;
   padding-bottom: 9px;
   margin-bottom: 20px;
   border-bottom: 1px solid #eee;
+}
+
+h1.title {
+  border-bottom: 2px solid #ccc;
 }
 
 pre.highlight {
@@ -35,7 +40,7 @@ li.toc-entry { display: block }
 li.toc-entry:before { content: counters(item, ".") " "; counter-increment: item }
 
 //
-// Sidebar
+// Menu Navigation
 //
 
 .sidebar {
@@ -66,8 +71,20 @@ li.toc-entry:before { content: counters(item, ".") " "; counter-increment: item 
   border-radius: 0;
 }
 
-.sidebar a.nav-level-0 {padding-left: 1rem;}
-.sidebar a.nav-level-1 {padding-left: 2rem;}
-.sidebar a.nav-level-2 {padding-left: 3rem;}
-.sidebar a.nav-level-3 {padding-left: 4rem;}
-.sidebar a.nav-level-4 {padding-left: 5rem;}
+.sidebar {
+  a.nav-level-0 {padding-left: 1rem;}
+  a.nav-level-1 {padding-left: 2rem;}
+  a.nav-level-2 {padding-left: 3rem;}
+  a.nav-level-3 {padding-left: 4rem;}
+  a.nav-level-4 {padding-left: 5rem;}
+}
+
+.content-menu {
+  padding-left: 1rem;
+  //list-style: disc inside;
+  li.nav-level-0 {margin-left: 1rem;}
+  li.nav-level-1 {margin-left: 3rem;}
+  li.nav-level-2 {margin-left: 5rem;}
+  li.nav-level-3 {margin-left: 7rem;}
+  li.nav-level-4 {margin-left: 9rem;}
+}
