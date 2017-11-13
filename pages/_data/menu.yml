@@ -7,24 +7,45 @@
     - abusing-input
     - other-tricks
   - checklists:
-    - generic
-    - rails-4
-    - expressjs
+    - generic-checklist
+    - ruby-checklists:
+      - rails-4
+      - rails-5
+    - javascript-checklists:
+      - nodejs
+      - expressjs
   - best-practices:
+    - input
+    - dependency-check
+    - static-analysis
+    - secrets-management
     - access-controls
     - csp
-    - dependency-checker
     - environment-isolation
     - https
-    - input
     - logging
-    - secrets
   - tools:
-    - agnostic
-    - java
-    - javascript
-    - python
-    - ruby
+    - agnostic-tools:
+      - agnostic-dependency-checker
+      - agnostic-static-analysis
+      - agnostic-dynamic-analysis
+      - agnostic-secrets-management
+    - java-tools:
+      - java-dependency-checker
+      - java-static-analysis
+      - java-secrets-management
+    - javascript-tools:
+      - javascript-dependency-checker
+      - javascript-static-analysis
+      - javascript-secrets-management
+    - python-tools:
+      - python-dependency-checker
+      - python-static-analysis
+      - python-secrets-management
+    - ruby-tools:
+      - ruby-dependency-checker
+      - ruby-static-analysis
+      - ruby-secrets-management
 - netsec:
   - best-practices:
     - systems-inventory
