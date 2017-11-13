@@ -2,7 +2,7 @@
 title: Other Tricks
 ---
 
-# Referrers
+## Referrers
 
 There are several things you can do to try to prevent the browser from sending referers
 
@@ -16,7 +16,7 @@ There are several things you can do to try to prevent the browser from sending r
 
    These are all good ideas for increasing the user's privacy, but should not be relied on to mitigate the problems associated with sensitive information in the URL.
 
-# Same Origin
+## Same Origin
 
   * Abusing same origin policy
     * how it works

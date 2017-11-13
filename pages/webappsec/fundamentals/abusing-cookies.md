@@ -1,5 +1,6 @@
 ---
 title: Abusing Cookies
+description: The surprisingly true tale of how cookies really work and all the ways in which they can be abused by attackers.
 toc: true
 ---
 
