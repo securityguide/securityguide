@@ -4,11 +4,18 @@ nav_title: Generic
 toc: true
 ---
 
+
 ## Configuration
 
-### TLS is required in production
+### Secrets are stored securely
 
-### Secrets are stored in the environment
+A "secret" includes passwords, API keys, and private keys.
+
+* No cleartext secrets in git
+* Secrets may be:
+  * Encrypted, (e.g. git-crypt)
+  * Stored in the environment
+  * Stored in secure storage (e.g. credstash)
 
 ### Anti-CSRF is enabled
 
@@ -27,30 +34,36 @@ Remember:
 * sessions have a max lifetime
 * sessions expire after inactivity
 
-## Assets
-
-* All stylesheets have absolute paths
-
 ## HTTP Headers
 
 * Enable secure headers
 * Sensitive content is not cached
 
-## Input
+```
+Cache-Control: max-age=0, private, no-store
+```
 
+## Secure connections
+
+* TLS is required in production
+* Database connections are secure
+* Other inputs and outputs
+* APIs?
+
+## Input Validation
+
+* Input has restrictive validation
 * All queries use parameter binding
+* No mass assignment
+
+## Output Filtering
+
 * User input is not used to build file paths
-
-## Views
-
-* All output is filtered
-
-## Routing and URLs
-
-* There is no sensitive information in any application URLs
+* All output is filtered, even if the data has been previously validated.
 
 ## Authorization
 
+* Reasonable authentication system
 * The default is to require authorization
 * follows principles of least privilege
 
@@ -58,3 +71,18 @@ Remember:
 
 * Dependency checks are run in pipeline
 * Static analysis is run in pipeline
+
+## Routing and URLs
+
+* There is no sensitive information in any application URLs
+* All stylesheets have absolute paths
+
+## Documentation
+
+* Purpose of application
+* Security considerations
+* How application is installed, configured, and run
+
+## Logging
+
+* Logging is centralized
