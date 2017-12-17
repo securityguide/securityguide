@@ -15,6 +15,19 @@
 
   <link rel="stylesheet" href="/security/assets/main.css">
   <link rel="alternate" type="application/rss+xml" title="ThoughtWorks Security Guide" href="/security/feed.xml">
+
+  <script src="/security/assets/simple-jekyll-search.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      SimpleJekyllSearch({
+        searchInput: document.getElementById("search-input"),
+        resultsContainer: document.getElementById("results-container"),
+        searchResultTemplate: '<li class="list-group-item"><a href="{url}">{title}</a></li>',
+        noResultsText: '<li class="list-group-item">No Results<li>',
+        json: "/security/assets/search.json"
+      })
+    });
+  </script>
 </head>
   <body>
     <header>
@@ -22,10 +35,10 @@
     <a class="navbar-brand" href="/">ThoughtWorks Security Guide</a>
     <div class="collapse navbar-collapse">
       <div class="mr-auto"></div>
-      <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      <div id="search-container">
+        <input type="text" class="form-control" id="search-input" placeholder="Search">
+        <ul id="results-container" class="list-group"></ul>
+      </div>
     </div>
   </nav>
 </header>
@@ -75,27 +88,38 @@
           <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#configuration">Configuration</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#tls-is-required-in-production">TLS is required in production</a></li>
-<li class="toc-entry toc-h3"><a href="#secrets-are-stored-in-the-environment">Secrets are stored in the environment</a></li>
+<li class="toc-entry toc-h3"><a href="#secrets-are-stored-securely">Secrets are stored securely</a></li>
 <li class="toc-entry toc-h3"><a href="#anti-csrf-is-enabled">Anti-CSRF is enabled</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#cookies-and-sessions">Cookies and sessions</a></li>
-<li class="toc-entry toc-h2"><a href="#assets">Assets</a></li>
 <li class="toc-entry toc-h2"><a href="#http-headers">HTTP Headers</a></li>
-<li class="toc-entry toc-h2"><a href="#input">Input</a></li>
-<li class="toc-entry toc-h2"><a href="#views">Views</a></li>
-<li class="toc-entry toc-h2"><a href="#routing-and-urls">Routing and URLs</a></li>
+<li class="toc-entry toc-h2"><a href="#secure-connections">Secure connections</a></li>
+<li class="toc-entry toc-h2"><a href="#input-validation">Input Validation</a></li>
+<li class="toc-entry toc-h2"><a href="#output-filtering">Output Filtering</a></li>
 <li class="toc-entry toc-h2"><a href="#authorization">Authorization</a></li>
 <li class="toc-entry toc-h2"><a href="#pipeline">Pipeline</a></li>
+<li class="toc-entry toc-h2"><a href="#routing-and-urls">Routing and URLs</a></li>
+<li class="toc-entry toc-h2"><a href="#documentation">Documentation</a></li>
+<li class="toc-entry toc-h2"><a href="#logging">Logging</a></li>
 </ul><h2 id="configuration">
 <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<h3 id="tls-is-required-in-production">
-<a id="tls-is-required-in-production" class="anchor" href="#tls-is-required-in-production" aria-hidden="true"><span class="octicon octicon-link"></span></a>TLS is required in production</h3>
+<h3 id="secrets-are-stored-securely">
+<a id="secrets-are-stored-securely" class="anchor" href="#secrets-are-stored-securely" aria-hidden="true"><span class="octicon octicon-link"></span></a>Secrets are stored securely</h3>
 
-<h3 id="secrets-are-stored-in-the-environment">
-<a id="secrets-are-stored-in-the-environment" class="anchor" href="#secrets-are-stored-in-the-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Secrets are stored in the environment</h3>
+<p>A “secret” includes passwords, API keys, and private keys.</p>
+
+<ul>
+  <li>No cleartext secrets in git</li>
+  <li>Secrets may be:
+    <ul>
+      <li>Encrypted, (e.g. git-crypt)</li>
+      <li>Stored in the environment</li>
+      <li>Stored in secure storage (e.g. credstash)</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="anti-csrf-is-enabled">
 <a id="anti-csrf-is-enabled" class="anchor" href="#anti-csrf-is-enabled" aria-hidden="true"><span class="octicon octicon-link"></span></a>Anti-CSRF is enabled</h3>
@@ -120,13 +144,6 @@
   <li>sessions expire after inactivity</li>
 </ul>
 
-<h2 id="assets">
-<a id="assets" class="anchor" href="#assets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assets</h2>
-
-<ul>
-  <li>All stylesheets have absolute paths</li>
-</ul>
-
 <h2 id="http-headers">
 <a id="http-headers" class="anchor" href="#http-headers" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTTP Headers</h2>
 
@@ -135,32 +152,41 @@
   <li>Sensitive content is not cached</li>
 </ul>
 
-<h2 id="input">
-<a id="input" class="anchor" href="#input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cache-Control: max-age=0, private, no-store
+</code></pre></div></div>
+
+<h2 id="secure-connections">
+<a id="secure-connections" class="anchor" href="#secure-connections" aria-hidden="true"><span class="octicon octicon-link"></span></a>Secure connections</h2>
 
 <ul>
+  <li>TLS is required in production</li>
+  <li>Database connections are secure</li>
+  <li>Other inputs and outputs</li>
+  <li>APIs?</li>
+</ul>
+
+<h2 id="input-validation">
+<a id="input-validation" class="anchor" href="#input-validation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input Validation</h2>
+
+<ul>
+  <li>Input has restrictive validation</li>
   <li>All queries use parameter binding</li>
+  <li>No mass assignment</li>
+</ul>
+
+<h2 id="output-filtering">
+<a id="output-filtering" class="anchor" href="#output-filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Output Filtering</h2>
+
+<ul>
   <li>User input is not used to build file paths</li>
-</ul>
-
-<h2 id="views">
-<a id="views" class="anchor" href="#views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Views</h2>
-
-<ul>
-  <li>All output is filtered</li>
-</ul>
-
-<h2 id="routing-and-urls">
-<a id="routing-and-urls" class="anchor" href="#routing-and-urls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Routing and URLs</h2>
-
-<ul>
-  <li>There is no sensitive information in any application URLs</li>
+  <li>All output is filtered, even if the data has been previously validated.</li>
 </ul>
 
 <h2 id="authorization">
 <a id="authorization" class="anchor" href="#authorization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authorization</h2>
 
 <ul>
+  <li>Reasonable authentication system</li>
   <li>The default is to require authorization</li>
   <li>follows principles of least privilege</li>
 </ul>
@@ -171,6 +197,30 @@
 <ul>
   <li>Dependency checks are run in pipeline</li>
   <li>Static analysis is run in pipeline</li>
+</ul>
+
+<h2 id="routing-and-urls">
+<a id="routing-and-urls" class="anchor" href="#routing-and-urls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Routing and URLs</h2>
+
+<ul>
+  <li>There is no sensitive information in any application URLs</li>
+  <li>All stylesheets have absolute paths</li>
+</ul>
+
+<h2 id="documentation">
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<ul>
+  <li>Purpose of application</li>
+  <li>Security considerations</li>
+  <li>How application is installed, configured, and run</li>
+</ul>
+
+<h2 id="logging">
+<a id="logging" class="anchor" href="#logging" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logging</h2>
+
+<ul>
+  <li>Logging is centralized</li>
 </ul>
 
         </main>
