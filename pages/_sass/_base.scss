@@ -88,3 +88,17 @@ li.toc-entry:before { content: counters(item, ".") " "; counter-increment: item 
   li.nav-level-3 {margin-left: 7rem;}
   li.nav-level-4 {margin-left: 9rem;}
 }
+
+//
+// Search
+//
+
+ul#results-container {
+  position: absolute;
+  min-width: 400px;
+  right: 15px;
+  margin-top: 7px;
+  box-shadow: #0009 0px 0px 16px;
+  border-radius: 7px;
+  list-style: none;
+}

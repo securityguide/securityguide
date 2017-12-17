@@ -3,10 +3,10 @@
     <a class="navbar-brand" href="/">{{ site.title }}</a>
     <div class="collapse navbar-collapse">
       <div class="mr-auto"></div>
-      <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      <div id="search-container">
+        <input type="text" class="form-control" id="search-input" placeholder="Search">
+        <ul id="results-container" class="list-group"></ul>
+      </div>
     </div>
   </nav>
 </header>

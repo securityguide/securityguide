@@ -1,0 +1,16 @@
+---
+layout: null
+---
+[
+{%- for page in site.pages -%}
+{%- if page.title -%}
+{
+  "title": {{ page.title | jsonify }},
+  "url": "{{ site.baseurl }}{{ page.url }}",
+  "tags": {{ page.tags | join: ', ' | jsonify}},
+  "content": {{ page.content | newline_to_br | strip_newlines | replace: '<br />', ' ' | strip_html | strip | jsonify}}
+},
+{%- endif -%}
+{%- endfor -%}
+{}
+]

@@ -47,5 +47,4 @@ To view the pages via a local server:
     * pre-review questionnaire
     * post-review process
 
-* javascript search https://github.com/christian-fei/Simple-Jekyll-Search
 * improve CSS
