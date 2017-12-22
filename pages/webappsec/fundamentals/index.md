@@ -1,6 +1,7 @@
 ---
 title: Web application security fundamentals
 nav_title: Fundamentals
+description: The core concepts behind the gritty details of how web applications work and common ways that web applications are compromised.
 ---
 
 These pages cover the core concepts behind the gritty details of how web applications work and common ways that web applications are compromised. For information on how to actually protect against attacks, see [Web Application Checklists](../checklists) and [Web Application Best Practices](../best-practices).

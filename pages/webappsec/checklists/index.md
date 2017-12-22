@@ -1,6 +1,7 @@
 ---
 title: Web Application Checklists
 nav_title: Checklists
+description: Essential things to check before deploying your web application into production.
 ---
 
 {% content_menu %}

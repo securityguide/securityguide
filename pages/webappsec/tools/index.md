@@ -2,6 +2,7 @@
 title: Web Application Tools
 nav_title: Tools
 toc: true
+description: Tools to help you write more secure web applications.
 ---
 
 ## Tools by languages

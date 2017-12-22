@@ -46,6 +46,8 @@
       - ruby-dependency-checker
       - ruby-static-analysis
       - ruby-secrets-management
+  - tutorials:
+    - ruby-saml
 - netsec:
   - best-practices:
     - systems-inventory
