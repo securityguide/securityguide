@@ -1,15 +1,32 @@
+$top-bar-height: 5rem;
+
 //
 // Base structure
 //
 
-// Move down content because we have a fixed navbar that is 3.5rem tall
+// Move down content because we have a fixed navbar that is 4.5rem tall
+.navbar {
+  height: $top-bar-height;
+  background-color: #337dcc;
+  background-image: url(/assets/images/rocks.jpg);
+  background-size: cover;
+  a#site-title { color: white }
+}
+
 body {
-  padding-top: 3.5rem;
+  padding-top: $top-bar-height;
 }
 
 //
 // Typography
 //
+
+
+#site-title {
+  font-weight: lighter;
+  font-size: 32px;
+  b {font-weight: bold;}
+}
 
 h1 {
   font-size: 3rem;
@@ -31,6 +48,11 @@ blockquote {
   margin-right: 2rem;
 }
 
+.copyleft {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
 //
 // UI Elements
 //
@@ -45,11 +67,11 @@ li.toc-entry:before { content: counters(item, ".") " "; counter-increment: item 
 
 .sidebar {
   position: fixed;
-  top: 51px;
+  top: $top-bar-height;
   bottom: 0;
   left: 0;
   z-index: 1000;
-  padding: 20px 0;
+  padding: 0px;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   //border-right: 1px solid #eee;
@@ -93,12 +115,46 @@ li.toc-entry:before { content: counters(item, ".") " "; counter-increment: item 
 // Search
 //
 
+#search-input {
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
 ul#results-container {
   position: absolute;
   min-width: 400px;
-  right: 15px;
+  right: 16px;
   margin-top: 7px;
   box-shadow: #0009 0px 0px 16px;
-  border-radius: 7px;
+  border-radius: 4px;
   list-style: none;
+}
+
+//
+// Footer
+//
+
+.footer {
+  margin: 4em 0;
+  text-align: center;
+  font-size: smaller;
+}
+
+//
+// IMAGES
+//
+
+.text-over-image {
+  position: relative;
+  margin-bottom: $grid-gutter-width;
+  .text {
+    a {color: white}
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36pt;
+    font-weight: bold;
+    line-height: 90%;
+  }
 }

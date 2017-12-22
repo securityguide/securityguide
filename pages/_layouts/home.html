@@ -5,9 +5,8 @@
     {% include header.html %}
     <div class="container-fluid">
       <div class="row">
-        {% include side_navigation.html %}
-        <main role="main" class="col-sm-9 ml-sm-auto col-md-9 pt-3">
-          {% if page.title %}<h1 class="title">{{ page.title }}</h1>{% endif %}
+        <main role="main" class="col-sm-12">
+          {% include frontmatter.html %}
           {{ content | auto_link | wiki_link | toc }}
           {% include footer.html %}
         </main>
