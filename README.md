@@ -24,6 +24,10 @@ To view the pages via a local server:
     cd security
     make serve
 
+## How to edit pages
+
+See `pages/index.md` for more information.
+
 ## TODO
 
 * add the following topics
@@ -46,5 +50,4 @@ To view the pages via a local server:
     * requesting review
     * pre-review questionnaire
     * post-review process
-
 * improve CSS
