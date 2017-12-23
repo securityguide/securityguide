@@ -2,26 +2,30 @@
 
 ## Directory layout
 
-* security
-  * docs: Rendered static pages. For now, these are committed to git so long as we use github pages.
+* securityguide
   * pages: The source content for the site.
+  * docs: Rendered static pages. These are NOT committed to this repo. Instead, these
+    rendered files are committed to `securityguide.github.io.git`.
 
 ## Building the static pages
 
 Install prerequisites:
 
+    brew install git
+    brew install ruby
+    git clone ssh://git@github.com/securityguide/securityguide
+    cd securityguide
     gem install bundler
-    cd security/docs
     bundle
 
 Build the static pages:
 
-    cd security
+    cd securityguide
     make build
 
 To view the pages via a local server:
 
-    cd security
+    cd securityguide
     make serve
 
 ## How to edit pages
