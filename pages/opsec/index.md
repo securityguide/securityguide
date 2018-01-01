@@ -2,62 +2,23 @@
 title: Operations Security
 ---
 
-## Level One
+{% content_menu %}
 
-* Password Manager
-  * why unique and strong passwords matter: a reused password will get leaked, humans can't compete with computers when it comes to thinking of random passwords.
-  * has everyone on the team adopted a password manager?
-  * unique passwords
-  * strong passwords
-* Updates
-  * why software updates matter
-  * is everyone on the team applying updates regularly?
-  * system updates
-  * app updates
-* Secure browsing
-  * keep browser up to date
-  * https everywhere
-  * ublock
-  * disable flash and java
-* Email Caution
-  * why everyone gets in trouble with email
-  * what better email practice is vitally important to the organization
-  * a few simple rules to always follow
-    * from can always be fake
-    * attachments
-    * links and url
-* Disk Encryption
-  * why it matters
-  * does everyone on the team encrypt their laptop and phone?
+# Credits
 
+Some text adapted from:
 
-## Level Two
+[Digital security checklists for US Non-profits](https://ecl.gy/sec-check)
+: from [Information Ecology](https://iecology.org), by Jonah Silas Sheridan, Lisa Jervis (Creative Commons: Attribute-ShareAlike)
 
-* Cloud hygiene
-  * why it matters, examples of sketchy apps
-  * what cloudlock, etc can do for you
-* Backups
-* End-to-end encryption
-  * Signal
-* Mindfulness
-  * be suspicious
-    * phishing
-    * links
-    * asks for information
-  * limit personal information sharing
-* Software
-  * do not side load software
-  * no pirated software
-  * Free software alternatives: gimp, libreoffice, inkscape, scribus, vlc.
-* Use a VPN
-* Device PIN
+[Security Planner](https://securityplanner.org)
+: from [Citizen Lab](https://citizenlab.ca) (Creative Commons: Attribution)
 
-## Level Three
+[Surveillance Self-defense](https://ssd.eff.org)
+: from [Electronic Frontier Foundation](https://eff.org) (Creative Commons: Attribution)
 
-* U2F
-* Smart Cards
-* OpenPGP
-* Tor
-* Tails
-* Disk Wiping
-* Borders
+[Security Education Companion](https://sec.eff.org)
+: from [Electronic Frontier Foundation](https://eff.org) (Creative Commons: Attribution)
+
+[Security In-a-box](https://securityinabox.org)
+: from [Tactical Technology Collective](https://tacticaltech.org/) (Creative Commons: Attribution-ShareAlike)

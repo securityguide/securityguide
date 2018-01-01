@@ -59,5 +59,24 @@
     - remote-logging
   - tools
   - threat-modeling
-- opsec
+- opsec:
+  - level-one:
+    - passwords
+    - email
+    - device-encryption
+    - better-browsing
+    - software
+  - level-two:
+    - device-settings
+    - cloud-settings
+    - backups
+    - mindfulness
+    - end-to-end
+    - vpn
+  - level-three:
+    - physical-security
+    - second-factor-authentication
+    - erasing-data
+    - tor
+    - openpgp
 - contributing
