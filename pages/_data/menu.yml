@@ -1,6 +1,6 @@
 ---
 - home (index)
-- webappsec:
+- webapps:
   - fundamentals:
     - abusing-cookies
     - abusing-filesystems
@@ -48,7 +48,7 @@
       - ruby-secrets-management
   - tutorials:
     - ruby-saml
-- netsec:
+- infrastructure:
   - best-practices:
     - systems-inventory
     - system-administrators
@@ -59,7 +59,7 @@
     - remote-logging
   - tools
   - threat-modeling
-- opsec:
+- personal:
   - level-one:
     - passwords
     - email

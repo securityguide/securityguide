@@ -1,5 +1,5 @@
 ---
-title: Opsec Level Two
+title: "Personal Security: Level Two"
 nav_title: Level Two
 description: Once you have mastered the basics, take on these personal security best practices.
 ---
