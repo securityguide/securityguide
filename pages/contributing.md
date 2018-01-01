@@ -6,12 +6,11 @@ toc: true
 ### Simple method: editing on Github
 
 Learning to use git can be very difficult. As an alternative, it is possible
-to contribute to `security.git` by directly editing pages through the Github
+to contribute to `securityguide.git` by directly editing pages through the Github
 website. This method does not let you preview how the page will render, but it
 does allow you to contribute edits without needing to install any software.
 
-First, you need to register a github.com account. Then visit
-[github.com/thoughtworks/security]({{site.git_url}}).
+First, you need to register a github.com account. Then visit <{{site.git_url}}>.
 
 To edit files:
 
@@ -19,7 +18,7 @@ To edit files:
   name and then clicking the "Edit" button in the file's toolbar (it looks like
   pencil). To save, type a commit message and hit the "Propose file change" button.
 * **New Files:** You can add a new page by clicking the "+" button at the
-  end of the path breadcrumbs (e.g. "security / pages / netsec / [+]"
+  end of the path breadcrumbs (e.g. "securityguide / pages / webapps / [+]"
   near the top of the page). When you are done editing the content, hit the
   "Propose new file" button.
 
@@ -35,11 +34,11 @@ and either merge it right away or add comments.
    a copy of the code under your GitHub user account. For more details on
    how to fork a repository see [this guide](https://help.github.com/articles/fork-a-repo/).
 
-2. Clone your fork of the `security` repo from your GitHub account to your local disk:
+2. Clone your fork of the `securityguide` repo from your GitHub account to your local disk:
 
    ```bash
-   $ git clone git@github.com:YOUR_GITHUB_LOGIN/security.git
-   $ cd security
+   $ git clone git@github.com:YOUR_GITHUB_LOGIN/securityguide.git
+   $ cd securityguide
    ```
 
 3. Create a ``feature`` branch to hold your development changes:
@@ -63,7 +62,7 @@ and either merge it right away or add comments.
 
 5. Issue a pull request
 
-Go to https://github.com/YOUR_GITHUB_LOGIN/security and push the button to [issue a pull request](https://help.github.com/articles/using-pull-requests). Someone will review your changes and merge them or comment on them.
+Go to https://github.com/YOUR_GITHUB_LOGIN/guidesecurity and push the button to [issue a pull request](https://help.github.com/articles/using-pull-requests). Someone will review your changes and merge them or comment on them.
 
 **Installing Jekyll**
 
@@ -81,32 +80,32 @@ Install `bundler` on Debian/Ubuntu:
 
 Install `jekyll`:
 
-    $ cd security
+    $ cd securityguide
     $ bundle
 
 **Previewing pages**
 
 When you are making changes, you can prevew the changes by running the jekyll server:
 
-    $ cd security
+    $ cd securityguide
     $ make serve
 
 Then browse to [http://localhost:4000](http://localhost:4000). Any page you view this way gets re-rendered when it is loaded.
 
 After you have made changes, run this command to completely render the static HTML for the entire site:
 
-    $ cd security
+    $ cd securityguide
     $ make build
 
 **Putting it all together**
 
 1. Go to {{site.git_url}} and click the fork button.
-2. Clone your fork locally: `git clone ssh://git@github.com/YOUR_GITHUB_LOGIN/security`
-3. Start the amber server: `cd security; make serve`
-4. Edit files in `security/pages`
+2. Clone your fork locally: `git clone ssh://git@github.com/YOUR_GITHUB_LOGIN/securityguide`
+3. Start the amber server: `cd securityguide; make serve`
+4. Edit files in `securityguide/pages`
 5. Preview changes in your browser using http://localhost:4000
 6. When satisfied, `git commit`, `git push`
-7. Go to https://github.com/YOUR_GITHUB_LOGIN/security and push the button to [issue a pull request](https://help.github.com/articles/using-pull-requests).
+7. Go to https://github.com/YOUR_GITHUB_LOGIN/securityguide and push the button to [issue a pull request](https://help.github.com/articles/using-pull-requests).
 
 **Keeping up to date**
 
