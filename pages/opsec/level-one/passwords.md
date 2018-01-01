@@ -33,9 +33,9 @@ Strong passwords are *randomly generated*. Except for the password to unlock you
 
 Humans are very bad at coming up with secure passwords, but computers are excellent. Let the computer do it for you.
 
-For passwords that you must remember, there are many ways to generate strong passwords. There is a guide in [Security In-a-box](https://securityinabox.org/en/guide/passwords).
+For passwords that you must remember, there are many ways to generate strong passwords. There is a guide in Security Self-defense for [Creating Strong Passwords](https://ssd.eff.org/en/module/creating-strong-passwords).
 
-[Diceware](http://world.std.com/~reinhold/diceware.html) is a fun and effective scheme for creating random yet memorable passwords using everyday objects and a word list. One other great way to make a strong password is to come up with a silly sentence that no one’s ever said before and use the first letter or two of each word as your password, mixing in other types of characters.*
+[Diceware](http://world.std.com/~reinhold/diceware.html) is a fun and effective scheme for creating random yet memorable passwords using everyday objects and a word list. One other great way to make a strong password is to come up with a silly sentence that no one’s ever said before and use the first letter or two of each word as your password, mixing in other types of characters.
 
 It is important to apply strong passwords to all accounts, as access to a single account can often be leveraged into access to other systems. This is especially relevant for any email accounts that can be used to reset or recover other passwords (usually via a "forgot password" link).
 
