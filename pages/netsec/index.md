@@ -1,4 +1,5 @@
 ---
-title: Network Security
+title: Infrastructure Security
 ---
 
+{% content_menu %}

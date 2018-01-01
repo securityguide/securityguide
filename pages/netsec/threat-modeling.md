@@ -2,18 +2,13 @@
 title: Threat Modeling
 ---
 
-https://www.owasp.org/index.php/Threat_Risk_Modeling
+To be written
 
-https://www.schneier.com/academic/archives/1999/12/attack_trees.html
+## See also
 
-https://msdn.microsoft.com/en-us/library/ff648644.aspx
-
-  Step 1. Identify Assets
-  Step 2. Create an Architecture Overview
-  Step 3. Decompose the Application
-  Step 4. Identify the Threats
-  Step 5. Document the Threats
-  Step 6. Rate the Threats
+* <https://www.owasp.org/index.php/Threat_Risk_Modeling>
+* <https://www.schneier.com/academic/archives/1999/12/attack_trees.html>
+* [Improving Web Application Security: Threats and Countermeasures / Chapter 3 Threat Modeling](https://msdn.microsoft.com/en-us/library/ff648644.aspx)
 
 ## Work and data flows
 
