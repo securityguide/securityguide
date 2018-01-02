@@ -5,7 +5,7 @@
     - abusing-cookies
     - abusing-filesystems
     - abusing-input
-    - other-tricks
+    - abusing-urls
   - checklists:
     - generic-checklist
     - ruby-checklists:
