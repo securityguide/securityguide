@@ -13,16 +13,15 @@
 #
 #   [[title => page]]
 #
+# If two pages have the same name, you can distinguish between them by
+# specifying the full path:
+#
+#   [[page => path/to/page]]
+#   [[page => other/path/to/page]]
+#
 # USAGE:
 #
-#   in liquid template: {{ content | auto_link }}
-#
-# TODO: if there are two pages with the same then the link
-#       will point to whichever page appears last in site.pages array.
-#       Ideally, it would be better if you could distinguish between
-#       the pages aa/xx and cc/xx.
-#       This can be done by measuring the distance between the current
-#       page and the various competing target pages.
+#   in liquid template: {{ content | wiki_link }}
 #
 # Author: elijah@riseup.net
 # Copyright (c) 2017 ThoughtWorks

@@ -130,7 +130,7 @@ In addition to traditional Markdown syntax for links, you can use wiki-style lin
     \[[page_name|Title]]
     \[[Title => page_name]]
 
-Using wiki-style links is highly preferred, because these links will not break when a page moves and missing links will produce an error notice.
+Using wiki-style links is highly preferred, because these links will not break when a page moves and missing links will produce an error notice. If two pages have the same name, you can distinguish between them by specifying the full path for the page name (e.g. [[best practices => webapps/best-practices]]).
 
 **Includes**
 
