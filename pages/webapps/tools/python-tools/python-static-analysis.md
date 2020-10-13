@@ -6,7 +6,7 @@ title: Static analysis for Python
 
 Bandit is a static security analysis tool for Python. Bandit is meant to find the common issues, so please don't take a passing scan to mean bullet-proof code. You may want to use Bandit in conjunction with a language-agnositc analysis tool like Grepbugs.
 
-Its [README.rst](https://github.com/openstack/bandit/blob/master/README.rst) is pretty great (somehow both extensive and succinct), so I won't say too much here.
+Its [README.rst](https://github.com/PyCQA/bandit/blob/master/README.rst) is pretty great (somehow both extensive and succinct), so I won't say too much here.
 
 ### Installation
 
